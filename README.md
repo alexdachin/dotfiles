@@ -24,3 +24,9 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 ```
 vim +PlugInstall +qall
 ```
+
+Install fzf:
+
+```
+brew install fzf
+```

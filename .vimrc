@@ -54,6 +54,7 @@ set shiftwidth=2
 
 " NERDTree
 let NERDTreeShowHidden = 1
+let g:NERDTreeNodeDelimiter = "\u00a0"
 nmap <leader>t :NERDTreeToggle<cr>
 
 " fzf
