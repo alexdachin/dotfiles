@@ -11,6 +11,14 @@ export CLICOLOR=1
 export HISTFILESIZE=1000000
 export HISTSIZE=1000000
 
+# language
+export LC_ALL=en_US.utf-8
+
+# aliases
+alias pwc='pwd | pbcopy'
+
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+
 if [ -f $HOME/.bash_profile_private ]; then
   source $HOME/.bash_profile_private
 fi

@@ -30,6 +30,9 @@ Plug 'mileszs/ack.vim'
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'itchyny/lightline.vim'
 Plug 'arcticicestudio/nord-vim'
+Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
+Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+Plug 'w0rp/ale', { 'for': ['javascript', 'typescript'] }
 call plug#end()
 
 " Colorscheme
@@ -45,6 +48,8 @@ nmap <leader>ss :syntax sync fromstart<cr>
 nmap <leader>sw :set syntax=whitespace<cr>
 nmap <leader>sh :set syntax=html<cr>
 nmap <leader>sj :set syntax=javascript<cr>
+nmap <leader>sp :set syntax=python<cr>
+nmap <leader>sr :set syntax=ruby<cr>
 
 " Tab size
 set expandtab
@@ -54,7 +59,6 @@ set shiftwidth=2
 
 " NERDTree
 let NERDTreeShowHidden = 1
-let g:NERDTreeNodeDelimiter = "\u00a0"
 nmap <leader>t :NERDTreeToggle<cr>
 
 " fzf
@@ -91,3 +95,17 @@ let g:gitgutter_diff_args = '-w'
 set noendofline
 set nofixendofline
 
+" Ale
+let g:ale_linters_explicit = 1
+let g:ale_fix_on_save = 1
+let g:ale_javascript_prettier_use_local_config = 1
+
+let g:ale_linters = {
+\   'javascript': ['prettier', 'eslint'],
+\   'typescript': ['prettier', 'tslint']
+\}
+
+let g:ale_fixers = {
+\   'javascript': ['prettier'],
+\   'typescript': ['prettier', 'tslint'],
+\}
