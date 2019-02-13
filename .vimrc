@@ -28,11 +28,13 @@ Plug 'mattn/emmet-vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'mileszs/ack.vim'
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 Plug 'itchyny/lightline.vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'w0rp/ale', { 'for': ['javascript', 'typescript'] }
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
 " Colorscheme
@@ -41,7 +43,24 @@ colorscheme nord
 
 " Lightline
 set laststatus=2
-let g:lightline = { 'colorscheme': 'nord' }
+let g:lightline = {
+\ 'colorscheme' : 'nord',
+\ 'active': {
+\   'left': [['mode', 'paste'], ['readonly', 'filename', 'modified']],
+\ },
+\ 'component_function': {
+\   'filename': 'LightlineFilename',
+\ }
+\}
+
+function! LightlineFilename()
+  let root = fnamemodify(get(b:, 'git_dir'), ':h')
+  let path = expand('%:p')
+  if path[:len(root)-1] ==# root
+    return path[len(root)+1:]
+  endif
+  return expand('%')
+endfunction
 
 " Syntax
 nmap <leader>ss :syntax sync fromstart<cr>
@@ -101,11 +120,11 @@ let g:ale_fix_on_save = 1
 let g:ale_javascript_prettier_use_local_config = 1
 
 let g:ale_linters = {
-\   'javascript': ['prettier', 'eslint'],
-\   'typescript': ['prettier', 'tslint']
+\ 'javascript': ['prettier'],
+\ 'typescript': ['prettier', 'tslint']
 \}
 
 let g:ale_fixers = {
-\   'javascript': ['prettier'],
-\   'typescript': ['prettier', 'tslint'],
+\ 'javascript': ['prettier'],
+\ 'typescript': ['prettier'],
 \}
