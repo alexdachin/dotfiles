@@ -27,8 +27,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'mattn/emmet-vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'mileszs/ack.vim'
-Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-Plug 'mxw/vim-jsx', { 'for': 'javascript' }
+Plug 'chemzqm/vim-jsx-improve', { 'for': 'javascript' }
 Plug 'itchyny/lightline.vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
@@ -36,6 +35,7 @@ Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'w0rp/ale', { 'for': ['javascript', 'typescript'] }
 Plug 'tpope/vim-fugitive'
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+Plug 'tpope/vim-surround'
 call plug#end()
 
 " Colorscheme
@@ -122,10 +122,10 @@ let g:ale_javascript_prettier_use_local_config = 1
 
 let g:ale_linters = {
 \ 'javascript': ['prettier', 'eslint'],
-\ 'typescript': ['prettier', 'eslint']
+\ 'typescript': ['prettier', 'eslint', 'tsserver']
 \}
 
 let g:ale_fixers = {
-\ 'javascript': ['prettier'],
-\ 'typescript': ['prettier'],
+\ 'javascript': ['prettier', 'eslint'],
+\ 'typescript': ['prettier', 'eslint'],
 \}
