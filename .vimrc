@@ -117,15 +117,18 @@ set nofixendofline
 
 " Ale
 let g:ale_linters_explicit = 1
-let g:ale_fix_on_save = 1
-let g:ale_javascript_prettier_use_local_config = 1
-
+let g:ale_fix_on_save = 0
+let g:ale_javascript_eslint_use_global = 1
+let g:ale_javascript_eslint_executable = 'eslint_d'
+ 
 let g:ale_linters = {
-\ 'javascript': ['prettier', 'eslint'],
-\ 'typescript': ['prettier', 'eslint', 'tsserver']
+\ 'javascript': ['eslint'],
+\ 'typescript': ['eslint', 'tsserver']
 \}
 
 let g:ale_fixers = {
-\ 'javascript': ['prettier', 'eslint'],
-\ 'typescript': ['prettier', 'eslint'],
+\ 'javascript': ['eslint'],
+\ 'typescript': ['eslint'],
 \}
+
+nmap > :ALEFix<cr>

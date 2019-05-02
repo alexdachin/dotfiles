@@ -3,6 +3,7 @@
 Install dependencies:
 ```
 brew install git vim fzf yarn
+npm install -g eslint_d
 ```
 
 Clone:
@@ -28,9 +29,6 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 
 ```
 vim +PlugInstall
-vim +CocInstall\ coc-tsserver
-vim +CocInstall\ coc-css
-vim +CocInstall\ coc-emmet
 vim +CocInstall\ coc-json
 vim +CocInstall\ coc-yaml
 ```
