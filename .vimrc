@@ -35,6 +35,7 @@ Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'w0rp/ale', { 'for': ['javascript', 'typescript'] }
 Plug 'tpope/vim-fugitive'
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
 call plug#end()
 
 " Colorscheme
@@ -120,8 +121,8 @@ let g:ale_fix_on_save = 1
 let g:ale_javascript_prettier_use_local_config = 1
 
 let g:ale_linters = {
-\ 'javascript': ['prettier'],
-\ 'typescript': ['prettier', 'tslint']
+\ 'javascript': ['prettier', 'eslint'],
+\ 'typescript': ['prettier', 'eslint']
 \}
 
 let g:ale_fixers = {

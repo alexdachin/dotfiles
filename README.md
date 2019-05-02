@@ -1,5 +1,10 @@
 # dotfiles
 
+Install dependencies:
+```
+brew install git vim fzf yarn
+```
+
 Clone:
 
 ```
@@ -22,11 +27,11 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 ```
 
 ```
-vim +PlugInstall +qall
+vim +PlugInstall
+vim +CocInstall\ coc-tsserver
+vim +CocInstall\ coc-css
+vim +CocInstall\ coc-emmet
+vim +CocInstall\ coc-json
+vim +CocInstall\ coc-yaml
 ```
 
-Install fzf:
-
-```
-brew install fzf
-```
