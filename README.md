@@ -2,7 +2,7 @@
 
 Install dependencies:
 ```
-brew install git vim fzf yarn
+brew install git neovim fzf yarn
 npm install -g eslint_d
 ```
 
@@ -17,19 +17,17 @@ Create symlinks:
 ```
 ln -s ~/dotfiles/.bash_profile ~/.bash_profile
 ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
-ln -s ~/dotfiles/.vimrc ~/.vimrc
+ln -s ~/dotfiles/.config/nvim/init.vim ~/.config/nvim/init.vim
 ```
 
 Install vim plug:
 
 ```
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
 
 ```
-vim +PlugInstall
-vim +CocInstall\ coc-json
-vim +CocInstall\ coc-yaml
+nvim +PlugInstall
 ```
 
