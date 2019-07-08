@@ -38,14 +38,10 @@ set softtabstop=2
 set shiftwidth=2
 
 " Terminal
-nmap <leader>tjl :vsplit<cr>:execute 'terminal jest '.expand('%').':'.line('.')<cr>
 nmap <leader>tjf :vsplit<cr>:execute 'terminal jest '.expand('%')<cr>
-nmap <leader>tjj :vsplit<cr>:execute 'terminal jest'<cr>
-nmap <leader>tef :vsplit<cr>:execute 'terminal eslint_d '.expand('%')<cr>
-nmap <leader>tee :vsplit<cr>:execute 'terminal eslint_d'<cr>
-nmap <leader>trl :vsplit<cr>:execute 'terminal rspec '.expand('%').':'.line('.')<cr>
+nmap <leader>tjw :vsplit<cr>:execute 'terminal jest '.expand('%').' --watch'<cr>
 nmap <leader>trf :vsplit<cr>:execute 'terminal rspec '.expand('%')<cr>
-nmap <leader>trr :vsplit<cr>:execute 'terminal rspec'<cr>
+nmap <leader>trl :vsplit<cr>:execute 'terminal rspec '.expand('%').':'.line('.')<cr>
 
 " Plugins
 call plug#begin()
@@ -60,6 +56,7 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
+Plug 'w0rp/ale'
 call plug#end()
 
 " Colorscheme
@@ -108,3 +105,18 @@ endfunction
 let NERDTreeShowHidden = 1
 nmap <leader>ft :NERDTreeToggle<cr>
 
+" Ale
+let g:ale_fix_on_save = 1
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['eslint'],
+\   'typescript': ['eslint'],
+\}
+let g:ale_linters = {
+\   'javascript': ['eslint', 'tsserver'],
+\   'typescript': ['eslint', 'tsserver', 'typecheck'],
+\}
+
+nmap <leader>ag :ALEGoToDefinition<cr>
+nmap <leader>ah :ALEHover<cr>
+nmap <leader>ad :ALEDocumentation<cr>
