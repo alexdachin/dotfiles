@@ -2,8 +2,7 @@
 
 Install dependencies:
 ```
-brew install git neovim fzf yarn
-npm install -g eslint_d
+brew install bash git neovim fzf
 ```
 
 Clone:
@@ -15,9 +14,17 @@ git clone git@github.com:alexdachin/dotfiles.git
 Create symlinks:
 
 ```
-ln -s ~/dotfiles/.bash_profile ~/.bash_profile
+ln -s ~/dotfiles/.bash_custom ~/.bash_custom
 ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
 ln -s ~/dotfiles/.config/nvim/init.vim ~/.config/nvim/init.vim
+```
+
+Load the bash custom settings into .bashrc:
+
+```
+if [ -f $HOME/.bash_custom ]; then
+  source $HOME/.bash_custom
+fi
 ```
 
 Install vim plug:
@@ -30,4 +37,3 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 ```
 nvim +PlugInstall
 ```
-
