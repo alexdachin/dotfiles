@@ -54,6 +54,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'mattn/emmet-vim'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'w0rp/ale'
@@ -65,15 +66,19 @@ colorscheme nord
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " Fzf
 nmap <leader>fs :Files<cr>
 nmap <leader>bl :Buffers<cr>
 
 " GitGutter
-map <leader>g :GitGutter<cr>
+nmap <leader>gg :GitGutter<cr>
 let g:gitgutter_max_signs = 900
 let g:gitgutter_diff_args = '-w'
+
+" Fugitive
+nmap <leader>gb :Gblame<cr>
 
 " Easymotion
 map <space>j <Plug>(easymotion-sol-j)
@@ -111,10 +116,12 @@ let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint'],
 \   'typescript': ['eslint'],
+\   'terraform': ['terraform'],
 \}
 let g:ale_linters = {
 \   'javascript': ['eslint', 'tsserver'],
 \   'typescript': ['eslint', 'tsserver', 'typecheck'],
+\   'ruby': ['ruby'],
 \}
 
 nmap <leader>ag :ALEGoToDefinition<cr>
