@@ -1,0 +1,11 @@
+[pull]
+  rebase = true
+[diff]
+  noprefix = true
+[alias]
+	wip = commit -m WIP
+	please = push --force-with-lease
+	pushup = push --set-upstream origin HEAD
+  amendit = commit --amend --no-edit
+[core]
+  pager = diff-so-fancy | less --tabs=4 -RFX
