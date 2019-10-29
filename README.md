@@ -2,7 +2,7 @@
 
 Install dependencies:
 ```
-brew install bash git neovim fzf
+brew install bash git neovim fzf diff-so-fancy
 ```
 
 Clone:

@@ -32,6 +32,7 @@ export EDITOR="$VISUAL"
 alias pwc="pwd | pbcopy"
 alias gd="git diff"
 alias gs="git status"
+alias dc="docker-compose"
 
 function gco() {
   local branches branch
