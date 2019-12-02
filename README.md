@@ -18,6 +18,9 @@ ln -s ~/dotfiles/.bash_custom ~/.bash_custom
 ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
 ln -s ~/dotfiles/.config/nvim/init.vim ~/.config/nvim/init.vim
 ln -s ~/dotfiles/.gitconfig_custom ~/.gitconfig_custom
+
+mkdir ~/Library/KeyBindings
+ln -s ~/dotfiles/Library/KeyBindings/DefaultKeyBinding.dict ~/Library/KeyBindings/DefaultKeyBinding.dict
 ```
 
 Load the bash custom settings into .bashrc:
