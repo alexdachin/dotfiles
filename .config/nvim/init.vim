@@ -117,11 +117,13 @@ let g:ale_fixers = {
 \   'javascript': ['eslint'],
 \   'typescript': ['eslint'],
 \   'terraform': ['terraform'],
+\   'rust': ['rustfmt'],
 \}
 let g:ale_linters = {
 \   'javascript': ['eslint', 'tsserver'],
 \   'typescript': ['eslint', 'tsserver', 'typecheck'],
 \   'ruby': ['ruby'],
+\   'rust': ['cargo', 'rls', 'rustc'],
 \}
 
 nmap <leader>ag :ALEGoToDefinition<cr>
