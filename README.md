@@ -2,7 +2,21 @@
 
 Install dependencies:
 ```
-brew install bash git neovim fzf diff-so-fancy
+curl https://nixos.org/nix/install | sh
+
+nix-env -i bash-5.0-p11
+nix-env -i bat-0.12.1
+nix-env -i buku-4.2.2
+nix-env -i diff-so-fancy-1.2.7
+nix-env -i fd-7.4.0
+nix-env -i fzf-0.20.0
+nix-env -i git-2.24.1
+nix-env -i jq-1.6
+nix-env -i neovim-0.4.3
+nix-env -i nodejs-10.18.0
+nix-env -i rustup-1.21.0
+nix-env -i tmux-3.0a
+nix-env -i yarn-1.21.1
 ```
 
 Clone:
@@ -23,7 +37,7 @@ mkdir ~/Library/KeyBindings
 ln -s ~/dotfiles/Library/KeyBindings/DefaultKeyBinding.dict ~/Library/KeyBindings/DefaultKeyBinding.dict
 ```
 
-Load the bash custom settings into .bashrc:
+Load the bash custom settings into .bash_profile:
 
 ```
 if [ -f $HOME/.bash_custom ]; then
