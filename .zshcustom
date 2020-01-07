@@ -5,7 +5,7 @@ export ZSH="/Users/alexdachin/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 
 # oh-my-zsh plugins
-plugins=(git)
+plugins=(gitfast)
 
 # oh-my-zsh
 source $ZSH/oh-my-zsh.sh
@@ -32,6 +32,10 @@ SAVEHIST=$HISTSIZE
 
 # vim keybindings
 bindkey -v
+
+# navigate history with ctrl-p and ctrl-n
+bindkey '^P' up-history
+bindkey '^N' down-history
 
 # nix
 if [ -f ~/.nix-profile/etc/profile.d/nix.sh ]; then
