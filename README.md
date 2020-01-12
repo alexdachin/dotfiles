@@ -2,21 +2,21 @@
 
 Install dependencies:
 ```
-curl https://nixos.org/nix/install | sh
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-nix-env -i bat-0.12.1
-nix-env -i diff-so-fancy-1.2.7
-nix-env -i fd-7.4.0
-nix-env -i fzf-0.20.0
-nix-env -i git-2.24.1
-nix-env -i jq-1.6
-nix-env -i neovim-0.4.3
-nix-env -i nodejs-10.18.0
-nix-env -i rustup-1.21.0
-nix-env -i tmux-3.0a
-nix-env -i yarn-1.21.1
+brew install bat
+brew install diff-so-fancy
+brew install fd
+brew install fzf
+brew install git
+brew install jq
+brew install nvim
+brew install rustup
+brew install tmux
+brew install yarn
 
-pip3 install buku
+python3 -m pip install --user --upgrade pynvim
+python3 -m pip install buku
 
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
@@ -30,9 +30,10 @@ git clone git@github.com:alexdachin/dotfiles.git
 Create symlinks:
 
 ```
+mkdir -p ~/.config/nvim
+ln -s ~/dotfiles/.config/nvim/init.vim ~/.config/nvim/init.vim
 ln -s ~/dotfiles/.zshcustom ~/.zshcustom
 ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
-mkdir -p ~/.config/nvim && ln -s ~/dotfiles/.config/nvim/init.vim ~/.config/nvim/init.vim
 ln -s ~/dotfiles/.gitconfig_custom ~/.gitconfig_custom
 ```
 
