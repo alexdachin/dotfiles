@@ -14,6 +14,7 @@ brew install nvim
 brew install rustup
 brew install tmux
 brew install yarn
+brew install zsh
 
 python3 -m pip install --user --upgrade pynvim
 python3 -m pip install buku
