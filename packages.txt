@@ -3,6 +3,7 @@ bat
 buku
 cowsay
 diff-so-fancy
+direnv
 fd
 fzf
 git
