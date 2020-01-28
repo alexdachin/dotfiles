@@ -1,0 +1,15 @@
+bash
+bat
+buku
+cowsay
+diff-so-fancy
+fd
+fzf
+git
+jq
+nvim
+nvm
+python
+rustup
+tmux
+yarn
