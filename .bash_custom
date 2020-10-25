@@ -34,10 +34,15 @@ alias gd="git diff"
 alias gs="git status"
 alias dc="docker-compose"
 
+# functions
 function gco() {
   local branches branch
   branches=$(git branch --all | grep -v HEAD) &&
   branch=$(echo "$branches" |
            fzf -d $(( 2 + $(wc -l <<< "$branches") )) +m --query="$1" --select-1) &&
   git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+}
+
+function aws-profile() {
+  export AWS_PROFILE="$(grep '\[.*\]' ~/.aws/credentials | tr -d '[-]' | fzf)"
 }
