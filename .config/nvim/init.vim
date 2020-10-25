@@ -5,6 +5,7 @@ syntax on                      " syntax highlight
 set autoindent                 " autoindent
 set copyindent                 " copy the previous indentation on autoindenting
 set incsearch                  " show search results as i type
+set list                       " display invisible characters
 let mapleader = ','            " set leader to comma
 
 " No swap files
@@ -40,6 +41,8 @@ set shiftwidth=2
 " Terminal
 nmap <leader>tjf :vsplit<cr>:execute 'terminal jest '.expand('%')<cr>
 nmap <leader>tjw :vsplit<cr>:execute 'terminal jest '.expand('%').' --watch'<cr>
+nmap <leader>tmf :vsplit<cr>:execute 'terminal mocha '.expand('%')<cr>
+nmap <leader>tmw :vsplit<cr>:execute 'terminal mocha '.expand('%').' --watch'<cr>
 nmap <leader>trf :vsplit<cr>:execute 'terminal rspec '.expand('%')<cr>
 nmap <leader>trl :vsplit<cr>:execute 'terminal rspec '.expand('%').':'.line('.')<cr>
 
@@ -52,11 +55,12 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'itchyny/lightline.vim'
 Plug 'mattn/emmet-vim'
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
+Plug 'vimwiki/vimwiki'
 Plug 'w0rp/ale'
 call plug#end()
 
@@ -70,6 +74,7 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " Fzf
 nmap <leader>fs :Files<cr>
+nmap <leader>fg :GFiles --exclude-standard --others --cached<cr>
 nmap <leader>bl :Buffers<cr>
 
 " GitGutter
@@ -109,21 +114,22 @@ endfunction
 " NERDTree
 let NERDTreeShowHidden = 1
 nmap <leader>ft :NERDTreeToggle<cr>
+nmap <leader>ff :NERDTreeFind<cr>
 
 " Ale
 let g:ale_fix_on_save = 1
 let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'javascript': ['eslint'],
-\   'typescript': ['eslint'],
-\   'terraform': ['terraform'],
-\   'rust': ['rustfmt'],
+\ '*': ['remove_trailing_lines', 'trim_whitespace'],
+\ 'javascript': ['eslint'],
+\ 'typescript': ['eslint'],
+\ 'terraform': ['terraform'],
+\ 'rust': ['rustfmt'],
 \}
 let g:ale_linters = {
-\   'javascript': ['eslint', 'tsserver'],
-\   'typescript': ['eslint', 'tsserver', 'typecheck'],
-\   'ruby': ['ruby'],
-\   'rust': ['cargo', 'rls', 'rustc'],
+\ 'javascript': ['eslint', 'tsserver'],
+\ 'typescript': ['eslint', 'tsserver', 'typecheck'],
+\ 'ruby': ['ruby'],
+\ 'rust': ['cargo', 'rls', 'rustc'],
 \}
 
 nmap <leader>ag :ALEGoToDefinition<cr>

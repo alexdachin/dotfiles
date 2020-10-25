@@ -8,4 +8,8 @@
 	pushup = push --set-upstream origin HEAD
   amendit = commit --amend --no-edit
 [core]
-  pager = diff-so-fancy | less --tabs=4 -RFX
+  pager = delta
+[delta]
+  diff-so-fancy = true
+[interactive]
+  diffFilter = delta --color-only
