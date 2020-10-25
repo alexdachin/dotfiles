@@ -73,6 +73,13 @@ let g:deoplete#enable_at_startup = 1
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " Fzf
+command! -bang -nargs=? -complete=dir Files
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--info=inline']}), <bang>0)
+command! -bang -nargs=? -complete=dir GFiles
+  \ call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview({'options': ['--info=inline']}), <bang>0)
+command! -bang -nargs=? -complete=dir Buffers
+  \ call fzf#vim#buffers(fzf#vim#with_preview({'options': ['--info=inline']}), <bang>0)
+
 nmap <leader>fs :Files<cr>
 nmap <leader>fg :GFiles --exclude-standard --others --cached<cr>
 nmap <leader>bl :Buffers<cr>
