@@ -15,6 +15,7 @@ jq
 nvim
 nvm
 pyenv
+rbenv
 ripgrep
 rustup
 sd
