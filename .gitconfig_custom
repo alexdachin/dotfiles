@@ -3,9 +3,9 @@
 [diff]
   noprefix = true
 [alias]
-	wip = commit -m WIP
-	please = push --force-with-lease
-	pushup = push --set-upstream origin HEAD
+  wip = commit -m WIP
+  please = push --force-with-lease
+  pushup = push --set-upstream origin HEAD
   amendit = commit --amend --no-edit
 [core]
   pager = delta
