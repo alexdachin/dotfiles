@@ -140,6 +140,8 @@ let g:ale_linters = {
 \ 'rust': ['cargo', 'rls', 'rustc'],
 \}
 
+nmap <leader>ad :ALEDocumentation<cr>
 nmap <leader>ag :ALEGoToDefinition<cr>
 nmap <leader>ah :ALEHover<cr>
-nmap <leader>ad :ALEDocumentation<cr>
+nmap <leader>aj :ALENext<cr>
+nmap <leader>ak :ALEPrevious<cr>

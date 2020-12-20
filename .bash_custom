@@ -31,6 +31,11 @@ export BAT_THEME=base16
 # auto completion
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
+# pyenv
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
 # aliases
 alias pwc="pwd | pbcopy"
 alias gd="git diff"
