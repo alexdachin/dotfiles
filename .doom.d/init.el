@@ -35,7 +35,7 @@
        lsp                 ; language server protocol
        magit               ; git ui
        taskrunner          ; parse tasks from make, yaml, etc
-       ;;terraform         ; infrastructure as code
+       terraform           ; infrastructure as code
 
        :os
        (:if IS-MAC macos)  ; improve compatibility with macOS
@@ -48,7 +48,7 @@
        (javascript +lsp)   ; all(hope(abandon(ye(who(enter(here))))))
        markdown            ; writing docs for people to ignore
        org                 ; life organizer in plain text
-       ;;(python +lsp)     ; beautiful is better than ugly
+       (python +lsp)       ; beautiful is better than ugly
        rest                ; rest client
        (ruby +rails +lsp)  ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        rust                ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
