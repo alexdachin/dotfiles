@@ -14,6 +14,7 @@
        modeline            ; status line
        ophints             ; highlight the region an operation acts on
        treemacs            ; file tree drawer
+       vc-gutter           ; vcs diff in the fringe
 
        :editor
        (evil +everywhere)  ; sailing on the dark side

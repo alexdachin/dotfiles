@@ -10,6 +10,9 @@
 (setq display-line-numbers-mode t
       display-line-numbers-type t)
 
+;; No autosave pls
+(setq auto-save-default nil)
+
 ;; Org
 (setq org-directory "~/org/")
 
@@ -35,7 +38,8 @@
                     ))
                  "Custom calendar keymap."))
 
-(setq cfw:display-calendar-holidays nil)
+(setq calendar-week-start-day 1)         ; start calendar on Monday
+(setq cfw:display-calendar-holidays nil) ; do not show build-in holidays
 
 (defun ad/open-calendar ()
   "Open my calendar."
@@ -64,5 +68,5 @@
 (if (not (boundp 'ad/timer-update-live-variables))
   (setq ad/timer-update-live-variables (run-with-timer 0 10 'ad/update-live-variables)))
 
-(add-to-list 'global-mode-string '(:eval (propertize (concat ad/current-time " ") 'face 'warning)))
+(add-to-list 'global-mode-string '(:eval (propertize ad/current-time 'face 'warning)))
 (add-to-list 'global-mode-string '(:eval (propertize (concat ad/current-spotify-track "  ") 'face 'doom-modeline-info)))
