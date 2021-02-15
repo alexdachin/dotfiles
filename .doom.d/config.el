@@ -4,7 +4,7 @@
       user-mail-address "alexdachin20@gmail.com")
 
 (setq doom-theme 'doom-nord)
-(setq doom-font (font-spec :family "Fira Code" :size 14))
+(setq doom-font (font-spec :family "Iosevka" :size 15))
 
 ;; Absolute line numbers
 (setq display-line-numbers-mode t
