@@ -13,6 +13,9 @@
 ;; No autosave pls
 (setq auto-save-default nil)
 
+;; Delete items immediately in dired (do not send to trash)
+(setq delete-by-moving-to-trash nil)
+
 ;; Org
 (setq org-directory "~/org/")
 
@@ -29,6 +32,8 @@
                   org-todo-keyword-faces
                   '(("[?]"     . +org-todo-onhold)
                     ("BLOCKED" . +org-todo-onhold))))
+
+(after! org (setq org-attach-id-dir "attachments/"))
 
 ;; Calendar
 (after! calfw (defvar ad/cfw-custom-map
