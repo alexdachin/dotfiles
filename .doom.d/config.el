@@ -3,7 +3,7 @@
 (setq user-full-name "Alex Dachin"
       user-mail-address "alexdachin20@gmail.com")
 
-(setq doom-theme 'doom-nord)
+(setq doom-theme 'doom-one)
 (setq doom-font (font-spec :family "Iosevka" :size 15))
 
 ;; Absolute line numbers
@@ -16,8 +16,25 @@
 ;; Delete items immediately in dired (do not send to trash)
 (setq delete-by-moving-to-trash nil)
 
+;; Don't use system clipboard
+(setq select-enable-clipboard nil)
+
 ;; Org
 (setq org-directory "~/org/")
+
+(after! org (setq org-capture-templates
+                  '(
+                    ("d" "Diary"
+                     entry (file+olp+datetree "/Volumes/Workspace/Documents/Notes/diary.org")
+                     "* %?"
+                     :empty-lines 1)
+
+                    ("b" "Backdated diary"
+                     entry (file+olp+datetree "/Volumes/Workspace/Documents/Notes/diary.org")
+                     "* %?"
+                     :empty-lines 1
+                     :time-prompt t)
+                    )))
 
 (after! org (setq org-log-into-drawer t     ; log into the drawer
                   org-clock-into-drawer t   ; clock into the drawer
@@ -33,7 +50,8 @@
                   '(("[?]"     . +org-todo-onhold)
                     ("BLOCKED" . +org-todo-onhold))))
 
-(after! org (setq org-attach-id-dir "attachments/"))
+(after! org (setq org-attach-id-dir "attachments/"
+                  org-attach-dir-relative t))
 
 ;; Calendar
 (after! calfw (defvar ad/cfw-custom-map
