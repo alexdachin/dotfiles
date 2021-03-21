@@ -52,7 +52,7 @@ alias gd="git diff"
 alias gs="git status"
 alias dc="docker-compose"
 
-# functions
+# gco - fuzzy searches and checks out git branch
 function gco() {
   local branches branch
   branches=$(git branch --all | grep -v HEAD) &&
@@ -61,6 +61,10 @@ function gco() {
   git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 }
 
+# aws-profile - fuzzy searches and sets aws profile based on credentials
 function aws-profile() {
   export AWS_PROFILE="$(grep '\[.*\]' ~/.aws/credentials | tr -d '[-]' | fzf)"
 }
+
+# load extra config
+[[ -r $HOME/.bashrc_extra ]] && . "$HOME/.bashrc_extra"

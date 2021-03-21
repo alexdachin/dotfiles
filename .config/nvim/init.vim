@@ -1,12 +1,12 @@
 " Common
-set number                     " show line number
-set nocursorline               " do not highlight current line
-syntax on                      " syntax highlight
-set autoindent                 " autoindent
-set copyindent                 " copy the previous indentation on autoindenting
-set incsearch                  " show search results as i type
-set list                       " display invisible characters
-let mapleader = ','            " set leader to comma
+set number          " show line number
+set nocursorline    " do not highlight current line
+syntax on           " syntax highlight
+set autoindent      " autoindent
+set copyindent      " copy the previous indentation on autoindenting
+set incsearch       " show search results as i type
+set list            " display invisible characters
+let mapleader = ',' " set leader to comma
 
 " No swap files
 set nobackup
@@ -26,6 +26,10 @@ nmap <space>yy "+yy
 nmap <space>p "+p
 nmap <space>P "+P
 
+" Yank to clipboard the current file and line
+nmap <leader>yfl :execute 'let @+ = "'.expand('%').':'.line('.').'"'<cr>
+nmap <leader>yff :execute 'let @+ = "'.expand('%').'"'<cr>
+
 " Buffers
 nmap <leader>bd :bp<cr>:bd #<cr>
 nmap <leader>bn :bn<cr>
@@ -37,14 +41,6 @@ set expandtab
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
-
-" Terminal
-nmap <leader>tjf :vsplit<cr>:execute 'terminal jest '.expand('%')<cr>
-nmap <leader>tjw :vsplit<cr>:execute 'terminal jest '.expand('%').' --watch'<cr>
-nmap <leader>tmf :vsplit<cr>:execute 'terminal mocha '.expand('%')<cr>
-nmap <leader>tmw :vsplit<cr>:execute 'terminal mocha '.expand('%').' --watch'<cr>
-nmap <leader>trf :vsplit<cr>:execute 'terminal rspec '.expand('%')<cr>
-nmap <leader>trl :vsplit<cr>:execute 'terminal rspec '.expand('%').':'.line('.')<cr>
 
 " Plugins
 call plug#begin()
@@ -60,7 +56,6 @@ Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-Plug 'vimwiki/vimwiki'
 Plug 'w0rp/ale'
 call plug#end()
 

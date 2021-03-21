@@ -13,3 +13,5 @@
   diff-so-fancy = true
 [interactive]
   diffFilter = delta --color-only
+[include]
+  path = .gitconfig_extra
