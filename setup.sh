@@ -22,6 +22,10 @@ nvm use 14
 # yarn
 npm install -g yarn
 
+# language servers
+yarn global add typescript typescript-language-server # tsserver
+brew install hashicorp/tap/terraform-ls # terraformls
+
 # python versions
 pyenv install 2.7.18
 pyenv install 3.8.6

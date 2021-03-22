@@ -51,6 +51,7 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'itchyny/lightline.vim'
 Plug 'mattn/emmet-vim'
+Plug 'mhinz/vim-startify'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-abolish'
@@ -119,6 +120,7 @@ nmap <leader>ft :NERDTreeToggle<cr>
 nmap <leader>ff :NERDTreeFind<cr>
 
 " Ale
+let g:ale_completion_autoimport = 1
 let g:ale_fix_on_save = 1
 let g:ale_fixers = {
 \ '*': ['remove_trailing_lines', 'trim_whitespace'],
