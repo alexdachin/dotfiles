@@ -28,29 +28,21 @@ export EDITOR=$VISUAL
 # bat
 export BAT_THEME=base16
 
-# auto completion
-[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
-
-# pyenv
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-
-# rbenv
-if command -v rbenv 1>/dev/null 2>&1; then
-  eval "$(rbenv init -)"
-fi
-
-# nvm
-mkdir -p ~/.nvm
-[[ -r "/usr/local/opt/nvm/nvm.sh" ]] && . "/usr/local/opt/nvm/nvm.sh"
-[[ -r "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ]] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
-
 # aliases
 alias pwc="pwd | pbcopy"
 alias gd="git diff"
 alias gs="git status"
 alias dc="docker-compose"
+
+# fzf
+[[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
+
+# load nvm when needed
+function nvm() {
+  [[ -r "/usr/local/opt/nvm/nvm.sh" ]] && . "/usr/local/opt/nvm/nvm.sh"
+  [[ -r "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ]] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
+  nvm "$*"
+}
 
 # gco - fuzzy searches and checks out git branch
 function gco() {
