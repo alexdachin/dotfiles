@@ -16,8 +16,9 @@ brew install --HEAD neovim
 
 # node version
 . "/usr/local/opt/nvm/nvm.sh"
-nvm install 14
-nvm use 14
+nvm install 12
+nvm use 12
+nvm alias default 12
 
 # yarn
 npm install -g yarn
