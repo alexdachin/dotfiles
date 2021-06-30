@@ -9,6 +9,7 @@
   amendit = commit --amend --no-edit
 [core]
   pager = delta
+  untrackedCache = true
 [delta]
   diff-so-fancy = true
 [interactive]
