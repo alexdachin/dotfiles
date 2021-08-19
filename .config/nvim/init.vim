@@ -36,6 +36,14 @@ nmap <leader>bn :bn<cr>
 nmap <leader>bp :bp<cr>
 nmap <leader>b# :b #<cr>
 
+" Terminal
+nmap <leader>tjf :vsplit<cr>:execute 'terminal jest '.expand('%')<cr>
+nmap <leader>tjw :vsplit<cr>:execute 'terminal jest '.expand('%').' --watch'<cr>
+nmap <leader>tmf :vsplit<cr>:execute 'terminal mocha '.expand('%')<cr>
+nmap <leader>tmw :vsplit<cr>:execute 'terminal mocha '.expand('%').' --watch'<cr>
+nmap <leader>trf :vsplit<cr>:execute 'terminal rspec '.expand('%')<cr>
+nmap <leader>trl :vsplit<cr>:execute 'terminal rspec '.expand('%').':'.line('.')<cr>
+
 " Tab size
 set expandtab
 set tabstop=2
