@@ -6,25 +6,20 @@ brew install bat dust exa fd ripgrep sd # rust ❤️
 brew install fzf
 brew install git git-delta # git with fancy diffs 🎩
 brew install jq # json diffs
+brew install neovim # editor
 brew install nvm pyenv rbenv # version managers
 brew install rustup
-brew install tmux
 
-# nightly neovim 🌚
-brew install --HEAD luajit
-brew install --HEAD neovim
+# kitty terminal 😼
+curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
 
-# node version
-. "/usr/local/opt/nvm/nvm.sh"
-nvm install 12
-nvm use 12
-nvm alias default 12
-
-# yarn
-npm install -g yarn
+# node version management
+curl https://get.volta.sh | bash -s -- --skip-setup
+volta install node@12
+volta install yarn
 
 # language servers
-yarn global add typescript typescript-language-server # tsserver
+volta install typescript typescript-language-server # tsserver
 brew install hashicorp/tap/terraform-ls # terraformls
 
 # python versions
@@ -40,7 +35,9 @@ rbenv install 3.0.0
 rbenv global 3.0.0
 
 # create symlinks
+mkdir -p ~/.config/kitty
 mkdir -p ~/.config/nvim
+ln -s ~/dotfiles/.config/kitty/kitty.conf ~/.config/kitty/kitty.conf
 ln -s ~/dotfiles/.config/nvim/init.vim ~/.config/nvim/init.vim
 ln -s ~/dotfiles/.bash_profile ~/.bash_profile
 ln -s ~/dotfiles/.bashrc ~/.bashrc

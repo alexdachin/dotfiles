@@ -37,13 +37,6 @@ alias dc="docker-compose"
 # fzf
 [[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
 
-# load nvm when needed
-function nvm() {
-  [[ -r "/usr/local/opt/nvm/nvm.sh" ]] && . "/usr/local/opt/nvm/nvm.sh"
-  [[ -r "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ]] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
-  nvm "$*"
-}
-
 # gco - fuzzy searches and checks out git branch
 function gco() {
   local branches branch
