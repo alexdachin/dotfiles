@@ -63,10 +63,10 @@ Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'airblade/vim-gitgutter'
 Plug 'arcticicestudio/nord-vim'
-Plug 'easymotion/vim-easymotion'
 Plug 'itchyny/lightline.vim'
 Plug 'mattn/emmet-vim'
 Plug 'mhinz/vim-startify'
+Plug 'phaazon/hop.nvim'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-abolish'
@@ -78,6 +78,12 @@ call plug#end()
 " Colorscheme
 set background=dark
 colorscheme nord
+
+" Hop
+lua << EOF
+require'hop'.setup()
+vim.api.nvim_set_keymap('', '<space>f', [[<cmd>lua require'hop'.hint_char1()<cr>]], { silent = true })
+EOF
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
@@ -102,11 +108,6 @@ let g:gitgutter_diff_args = '-w'
 
 " Fugitive
 nmap <leader>gb :Gblame<cr>
-
-" Easymotion
-map <space>j <Plug>(easymotion-sol-j)
-map <space>k <Plug>(easymotion-sol-k)
-map <space>f <Plug>(easymotion-bd-f)
 
 " Lightline
 set laststatus=2
