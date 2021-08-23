@@ -66,6 +66,8 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'itchyny/lightline.vim'
 Plug 'mattn/emmet-vim'
 Plug 'mhinz/vim-startify'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 Plug 'phaazon/hop.nvim'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'sheerun/vim-polyglot'
@@ -89,17 +91,13 @@ EOF
 let g:deoplete#enable_at_startup = 1
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
-" Fzf
-command! -bang -nargs=? -complete=dir Files
-  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--info=inline']}), <bang>0)
-command! -bang -nargs=? -complete=dir GFiles
-  \ call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview({'options': ['--info=inline']}), <bang>0)
-command! -bang -nargs=? -complete=dir Buffers
-  \ call fzf#vim#buffers(fzf#vim#with_preview({'options': ['--info=inline']}), <bang>0)
-
-nmap <leader>fs :Files<cr>
-nmap <leader>fg :GFiles --exclude-standard --others --cached<cr>
-nmap <leader>bl :Buffers<cr>
+" Telescope
+autocmd FileType TelescopePrompt call deoplete#custom#buffer_option('auto_complete', v:false)
+lua << EOF
+vim.api.nvim_set_keymap('n', '<leader>fs', [[<cmd>lua require'telescope.builtin'.find_files()<cr>]], { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>fg', [[<cmd>lua require'telescope.builtin'.git_files()<cr>]], { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>bl', [[<cmd>lua require'telescope.builtin'.buffers()<cr>]], { silent = true })
+EOF
 
 " GitGutter
 nmap <leader>gg :GitGutter<cr>
