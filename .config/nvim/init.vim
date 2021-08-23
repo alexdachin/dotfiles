@@ -58,22 +58,24 @@ set softtabstop=2
 set shiftwidth=2
 
 " Plugins
-call plug#begin()
-Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'airblade/vim-gitgutter'
-Plug 'arcticicestudio/nord-vim'
-Plug 'itchyny/lightline.vim'
-Plug 'mattn/emmet-vim'
-Plug 'mhinz/vim-startify'
-Plug 'phaazon/hop.nvim'
-Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
-Plug 'sheerun/vim-polyglot'
-Plug 'tpope/vim-abolish'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
-Plug 'w0rp/ale'
-call plug#end()
+lua << EOF
+require('packer').startup(function()
+  use 'airblade/vim-gitgutter'
+  use 'arcticicestudio/nord-vim'
+  use 'itchyny/lightline.vim'
+  use 'mattn/emmet-vim'
+  use 'phaazon/hop.nvim'
+  use 'sheerun/vim-polyglot'
+  use 'tpope/vim-abolish'
+  use 'tpope/vim-fugitive'
+  use 'tpope/vim-surround'
+  use 'w0rp/ale'
+  use 'wbthomason/packer.nvim'
+  use {'Shougo/deoplete.nvim', run = ':UpdateRemotePlugins'}
+  use {'junegunn/fzf.vim', requires = {'/usr/local/opt/fzf'}}
+  use {'scrooloose/nerdtree', opt = true, cmd = {'NERDTreeToggle', 'NERDTreeFind'}}
+end)
+EOF
 
 " Colorscheme
 set background=dark
