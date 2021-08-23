@@ -46,7 +46,7 @@ vim.api.nvim_set_keymap('n', '<leader>trf', [[<cmd>lua kitty_window_with('rspec 
 vim.api.nvim_set_keymap('n', '<leader>trl', [[<cmd>lua kitty_window_with('rspec ' .. vim.fn.expand('%') .. ':' .. vim.fn.line('.'))<cr>]], { silent = true })
 
 function kitty_window_with(command)
-  os.execute('kitty @ --to $KITTY_LISTEN_ON new-window --no-response')
+  os.execute('kitty @ --to $KITTY_LISTEN_ON launch --cwd current --no-response')
   os.execute('kitty @ --to $KITTY_LISTEN_ON send-text ' .. command .. '\\\x0d')
 end
 EOF
