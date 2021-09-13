@@ -60,20 +60,20 @@ set shiftwidth=2
 " Plugins
 lua << EOF
 require('packer').startup(function()
-  use 'arcticicestudio/nord-vim'
-  use 'itchyny/lightline.vim'
-  use 'mattn/emmet-vim'
-  use 'phaazon/hop.nvim'
-  use 'sheerun/vim-polyglot'
-  use 'tpope/vim-abolish'
-  use 'tpope/vim-fugitive'
-  use 'tpope/vim-surround'
-  use 'w0rp/ale'
-  use 'wbthomason/packer.nvim'
   use {'Shougo/deoplete.nvim', run = ':UpdateRemotePlugins'}
+  use {'arcticicestudio/nord-vim'}
+  use {'itchyny/lightline.vim'}
   use {'junegunn/fzf.vim', requires = {'/usr/local/opt/fzf'}}
-  use {'lewis6991/gitsigns.nvim', requires = 'nvim-lua/plenary.nvim'}
+  use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}
+  use {'mattn/emmet-vim'}
+  use {'phaazon/hop.nvim'}
   use {'scrooloose/nerdtree', opt = true, cmd = {'NERDTreeToggle', 'NERDTreeFind'}}
+  use {'sheerun/vim-polyglot'}
+  use {'tpope/vim-abolish'}
+  use {'tpope/vim-fugitive'}
+  use {'tpope/vim-surround'}
+  use {'w0rp/ale'}
+  use {'wbthomason/packer.nvim'}
 end)
 EOF
 
