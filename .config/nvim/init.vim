@@ -60,7 +60,6 @@ set shiftwidth=2
 " Plugins
 lua << EOF
 require('packer').startup(function()
-  use 'airblade/vim-gitgutter'
   use 'arcticicestudio/nord-vim'
   use 'itchyny/lightline.vim'
   use 'mattn/emmet-vim'
@@ -73,6 +72,7 @@ require('packer').startup(function()
   use 'wbthomason/packer.nvim'
   use {'Shougo/deoplete.nvim', run = ':UpdateRemotePlugins'}
   use {'junegunn/fzf.vim', requires = {'/usr/local/opt/fzf'}}
+  use {'lewis6991/gitsigns.nvim', requires = 'nvim-lua/plenary.nvim'}
   use {'scrooloose/nerdtree', opt = true, cmd = {'NERDTreeToggle', 'NERDTreeFind'}}
 end)
 EOF
@@ -85,6 +85,14 @@ colorscheme nord
 lua << EOF
 require'hop'.setup()
 vim.api.nvim_set_keymap('', '<space>f', [[<cmd>lua require'hop'.hint_char1()<cr>]], { silent = true })
+EOF
+
+" Gitsigns
+lua << EOF
+require('gitsigns').setup {
+  signcolumn = true,
+  numhl      = true,
+}
 EOF
 
 " Deoplete
@@ -102,11 +110,6 @@ command! -bang -nargs=? -complete=dir Buffers
 nmap <leader>fs :Files<cr>
 nmap <leader>fg :GFiles --exclude-standard --others --cached<cr>
 nmap <leader>bl :Buffers<cr>
-
-" GitGutter
-nmap <leader>gg :GitGutter<cr>
-let g:gitgutter_max_signs = 900
-let g:gitgutter_diff_args = '-w'
 
 " Fugitive
 nmap <leader>gb :Gblame<cr>
