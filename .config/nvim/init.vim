@@ -61,6 +61,7 @@ set shiftwidth=2
 lua << EOF
 require('packer').startup(function()
   use {'Shougo/deoplete.nvim', run = ':UpdateRemotePlugins'}
+  use {'TimUntersberger/neogit', requires = {'nvim-lua/plenary.nvim'}}
   use {'arcticicestudio/nord-vim'}
   use {'itchyny/lightline.vim'}
   use {'junegunn/fzf.vim', requires = {'/usr/local/opt/fzf'}}
@@ -81,18 +82,20 @@ EOF
 set background=dark
 colorscheme nord
 
-" Hop
 lua << EOF
+-- Hop
 require'hop'.setup()
 vim.api.nvim_set_keymap('', '<space>f', [[<cmd>lua require'hop'.hint_char1()<cr>]], { silent = true })
-EOF
 
-" Gitsigns
-lua << EOF
+-- Gitsigns
 require('gitsigns').setup {
   signcolumn = true,
   numhl      = true,
 }
+
+-- Neogit
+local neogit = require('neogit')
+neogit.setup {}
 EOF
 
 " Deoplete
