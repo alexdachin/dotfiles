@@ -17,8 +17,15 @@ set noswapfile
 set noendofline
 set nofixendofline
 
-" File type settings
-autocmd BufNewFile,BufRead *.vue set syntax=html
+" Tab size
+set expandtab
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+
+" Colorscheme
+set background=dark
+colorscheme nord
 
 " Clipboard
 vmap <space>y "+y
@@ -36,133 +43,13 @@ nmap <leader>bn :bn<cr>
 nmap <leader>bp :bp<cr>
 nmap <leader>b# :b #<cr>
 
-" Terminal
+" Lua config
 lua << EOF
-vim.api.nvim_set_keymap('n', '<leader>tjf', [[<cmd>lua kitty_window_with('jest ' .. vim.fn.expand('%'))<cr>]], { silent = true })
-vim.api.nvim_set_keymap('n', '<leader>tjw', [[<cmd>lua kitty_window_with('jest ' .. vim.fn.expand('%') .. ' --watch')<cr>]], { silent = true })
-vim.api.nvim_set_keymap('n', '<leader>tmf', [[<cmd>lua kitty_window_with('mocha ' .. vim.fn.expand('%'))<cr>]], { silent = true })
-vim.api.nvim_set_keymap('n', '<leader>tmw', [[<cmd>lua kitty_window_with('mocha ' .. vim.fn.expand('%') .. ' --watch')<cr>]], { silent = true })
-vim.api.nvim_set_keymap('n', '<leader>trf', [[<cmd>lua kitty_window_with('rspec ' .. vim.fn.expand('%'))<cr>]], { silent = true })
-vim.api.nvim_set_keymap('n', '<leader>trl', [[<cmd>lua kitty_window_with('rspec ' .. vim.fn.expand('%') .. ':' .. vim.fn.line('.'))<cr>]], { silent = true })
-
-function kitty_window_with(command)
-  os.execute('kitty @ --to $KITTY_LISTEN_ON launch --cwd current --no-response')
-  os.execute('kitty @ --to $KITTY_LISTEN_ON send-text ' .. command .. '\\\x0d')
-end
+require('terminal')
+require('plugins')
 EOF
 
-" Tab size
-set expandtab
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
-
-" Plugins
-lua << EOF
-require('packer').startup(function()
-  use {'Shougo/deoplete.nvim', run = ':UpdateRemotePlugins'}
-  use {'TimUntersberger/neogit', requires = {'nvim-lua/plenary.nvim'}}
-  use {'arcticicestudio/nord-vim'}
-  use {'itchyny/lightline.vim'}
-  use {'junegunn/fzf.vim', requires = {'/usr/local/opt/fzf'}}
-  use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}
-  use {'mattn/emmet-vim'}
-  use {'phaazon/hop.nvim'}
-  use {'scrooloose/nerdtree', opt = true, cmd = {'NERDTreeToggle', 'NERDTreeFind'}}
-  use {'sheerun/vim-polyglot'}
-  use {'tpope/vim-abolish'}
-  use {'tpope/vim-fugitive'}
-  use {'tpope/vim-surround'}
-  use {'w0rp/ale'}
-  use {'wbthomason/packer.nvim'}
-end)
-EOF
-
-" Colorscheme
-set background=dark
-colorscheme nord
-
-lua << EOF
--- Hop
-require'hop'.setup()
-vim.api.nvim_set_keymap('', '<space>f', [[<cmd>lua require'hop'.hint_char1()<cr>]], { silent = true })
-
--- Gitsigns
-require('gitsigns').setup {
-  signcolumn = true,
-  numhl      = true,
-}
-
--- Neogit
-local neogit = require('neogit')
-neogit.setup {}
-EOF
-
-" Deoplete
-let g:deoplete#enable_at_startup = 1
-autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-
-" Fzf
-command! -bang -nargs=? -complete=dir Files
-  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--info=inline']}), <bang>0)
-command! -bang -nargs=? -complete=dir GFiles
-  \ call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview({'options': ['--info=inline']}), <bang>0)
-command! -bang -nargs=? -complete=dir Buffers
-  \ call fzf#vim#buffers(fzf#vim#with_preview({'options': ['--info=inline']}), <bang>0)
-
-nmap <leader>fs :Files<cr>
-nmap <leader>fg :GFiles --exclude-standard --others --cached<cr>
-nmap <leader>bl :Buffers<cr>
-
-" Fugitive
-nmap <leader>gb :Gblame<cr>
-
-" Lightline
-set laststatus=2
-let g:lightline = {
-\ 'colorscheme' : 'nord',
-\ 'active': {
-\   'left': [['mode', 'paste'], ['readonly', 'filename', 'modified']],
-\ },
-\ 'component_function': {
-\   'filename': 'LightlineFilename',
-\ }
-\}
-
-function! LightlineFilename()
-  let root = fnamemodify(get(b:, 'git_dir'), ':h')
-  let path = expand('%:p')
-  if path[:len(root)-1] ==# root
-    return path[len(root)+1:]
-  endif
-  return expand('%')
-endfunction
-
-" NERDTree
-let NERDTreeShowHidden = 1
-nmap <leader>ft :NERDTreeToggle<cr>
-nmap <leader>ff :NERDTreeFind<cr>
-
-" Ale
-let g:ale_completion_autoimport = 1
-let g:ale_fix_on_save = 1
-let g:ale_fixers = {
-\ '*': ['remove_trailing_lines', 'trim_whitespace'],
-\ 'javascript': ['eslint'],
-\ 'typescript': ['eslint'],
-\ 'typescriptreact': ['eslint'],
-\ 'terraform': ['terraform'],
-\ 'rust': ['rustfmt'],
-\}
-let g:ale_linters = {
-\ 'javascript': ['eslint', 'tsserver'],
-\ 'typescript': ['eslint', 'tsserver', 'typecheck'],
-\ 'ruby': ['ruby'],
-\ 'rust': ['cargo', 'rls', 'rustc'],
-\}
-
-nmap <leader>ad :ALEDocumentation<cr>
-nmap <leader>ag :ALEGoToDefinition<cr>
-nmap <leader>ah :ALEHover<cr>
-nmap <leader>aj :ALENext<cr>
-nmap <leader>ak :ALEPrevious<cr>
+" Plugin key bindings
+map <silent> <space>f :lua require'hop'.hint_char1()<cr>
+nmap <leader>ft :NvimTreeToggle<cr>
+nmap <leader>ff :NvimTreeFindFile<cr>

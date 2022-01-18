@@ -3,15 +3,18 @@
 ## Clone
 
 ```
-git clone git@github.com:alexdachin/dotfiles.git
+git clone git@github.com:alexdachin/dotfiles.git ~/.dotfiles
 ```
 
 ## Setup
-- Install [brew](https://brew.sh)
 - Run `setup.sh`
 
-## Install Emacs
+## Extend
+To further extend the git config, use `.gitconfig_extra`.
 
+## Experiments
+
+### Install Emacs
 ```
 brew tap d12frosted/emacs-plus
 brew install emacs-plus@27 --with-modern-sexy-v1-icon
@@ -22,11 +25,7 @@ git clone https://github.com/hlissner/doom-emacs ~/.emacs.d
 ~/.emacs.d/bin/doom install
 ```
 
-## Extend
-To further extend the config, use `.bashrc_extra` and `.gitconfig_extra`.
-
-## nvim lsp (in progress)
-
+### nvim lsp (in progress)
 ```
 lua << EOF
 local nvim_lsp = require('lspconfig')

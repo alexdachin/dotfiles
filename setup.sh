@@ -1,52 +1,96 @@
-#!/bin/bash
+#!/bin/sh
 
-# brew packages
-brew install bash bash-completion
-brew install bat dust exa fd ripgrep sd # rust ❤️
-brew install fzf
-brew install git git-delta # git with fancy diffs 🎩
-brew install jq # json diffs
-brew install neovim # editor
-brew install nvm pyenv rbenv # version managers
-brew install rustup
+function ask_yes_no() {
+    read -p "$1 [y/N]: " response
+    case $(echo "$response" | tr '[:upper:]' '[:lower:]') in
+        y|yes) echo "yes" ;;
+        *)     echo "no" ;;
+    esac
+}
 
-# kitty terminal 😼
-curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+if [[ $(ask_yes_no "👉 Install Xcode command line tools?") = "yes" ]]; then
+  echo "👉 Installing Xcode command line tools ..."
+  xcode-select --install
+fi
 
-# node version management
-curl https://get.volta.sh | bash -s -- --skip-setup
-volta install node@12
-volta install yarn
+if [[ $(ask_yes_no "👉 Set up macOS settings?") = "yes" ]]; then
+  echo "👉 Setting up macOS settings ..."
+  defaults write -g ApplePressAndHoldEnabled -bool false
+  defaults write com.apple.screencapture "disable-shadow" -bool true
+fi
 
-# language servers
-volta install typescript typescript-language-server # tsserver
-brew install hashicorp/tap/terraform-ls # terraformls
+if [[ $(ask_yes_no "👉 Install brew 🍺?") = "yes" ]]; then
+  echo "👉 Installing brew ..."
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
 
-# python versions
-pyenv install 2.7.18
-pyenv install 3.8.6
-pyenv global 3.8.6 2.7.18
+if [[ $(ask_yes_no "👉 Install common brew packages?") = "yes" ]]; then
+  echo "👉 Installing common brew packages ..."
+  brew install bat dust exa fd ripgrep sd # rust ❤️
+  brew install fzf
+  brew install git git-delta # git with fancy diffs 🎩
+  brew install jq # json diffs
+  brew install kitty # 😼 terminal
+  brew install neovim # editor
+  brew install pyenv chruby ruby-install # version managers
+  brew install rustup
+  brew install zsh
+fi
 
-# python client for nvim
-pip3 install --user --upgrade pynvim
+if [[ $(ask_yes_no "👉 Install fzf shell extensions?") = "yes" ]]; then
+  echo "👉 Installing fzf shell extensions ..."
+  echo "👉 DO NOT UPDATE SHELL CONFIGURATION FILES ..."
+  $(brew --prefix)/opt/fzf/install
+fi
 
-# ruby version
-rbenv install 3.0.0
-rbenv global 3.0.0
+if [[ $(ask_yes_no "👉 Install and configure volta?") = "yes" ]]; then
+  echo "👉 Installing and configuring volta ..."
+  curl https://get.volta.sh | bash -s -- --skip-setup
+  volta install node@16
+  volta install yarn
+fi
 
-# create symlinks
-mkdir -p ~/.config/kitty
-mkdir -p ~/.config/nvim
-ln -s ~/dotfiles/.config/kitty/kitty.conf ~/.config/kitty/kitty.conf
-ln -s ~/dotfiles/.config/nvim/init.vim ~/.config/nvim/init.vim
-ln -s ~/dotfiles/.bash_profile ~/.bash_profile
-ln -s ~/dotfiles/.bashrc ~/.bashrc
-ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
-ln -s ~/dotfiles/.gitconfig ~/.gitconfig
-ln -s ~/dotfiles/.doom.d ~/.doom.d
+if [[ $(ask_yes_no "👉 Install language servers?") = "yes" ]]; then
+  echo "👉 Installing language servers ..."
+  volta install typescript typescript-language-server # tsserver
+  brew install hashicorp/tap/terraform-ls # terraformls
+fi
 
-# install packer.nvim
-git clone https://github.com/wbthomason/packer.nvim \
-    ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+if [[ $(ask_yes_no "👉 Configure pyenv?") = "yes" ]]; then
+  echo "👉 Configuring pyenv ..."
+  brew install openssl readline sqlite3 xz zlib # python build dependencies
+  pyenv install 2.7.18
+  pyenv install 3.10.0
+  pyenv global 3.10.0 2.7.18
+fi
 
-nvim +PackerSync
+if [[ $(ask_yes_no "👉 Install ruby?") = "yes" ]]; then
+  echo "👉 Installing ruby ..."
+  ruby-install ruby 3.0.3
+fi
+
+if [[ $(ask_yes_no "👉 Install fonts?") = "yes" ]]; then
+  echo "👉 Installing fonts ..."
+  # iosevka
+  brew tap homebrew/cask-fonts
+  brew install --cask font-iosevka
+  # symbols nerd font
+  curl "https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/src/glyphs/Symbols-2048-em%20Nerd%20Font%20Complete.ttf" -o ~/Library/Fonts/symbols-2048-em-nerd-font.ttf
+fi
+
+if [[ $(ask_yes_no "👉 Symlink config files?") = "yes" ]]; then
+  echo "👉 Symlinking config files ..."
+  # kitty
+  mkdir -p ~/.config/kitty
+  ln -s ~/.dotfiles/.config/kitty/kitty.conf ~/.config/kitty/kitty.conf
+  # nvim
+  mkdir -p ~/.config/nvim/lua
+  ln -s ~/.dotfiles/.config/nvim/init.vim ~/.config/nvim/init.vim
+  ln -s ~/.dotfiles/.config/nvim/lua/plugins.lua ~/.config/nvim/lua/plugins.lua
+  ln -s ~/.dotfiles/.config/nvim/lua/terminal.lua ~/.config/nvim/lua/terminal.lua
+  # git
+  ln -s ~/.dotfiles/.gitconfig ~/.gitconfig
+  # zsh
+  ln -s ~/.dotfiles/.zprofile ~/.zprofile
+  ln -s ~/.dotfiles/.zshrc ~/.zshrc
+fi

@@ -1,0 +1,51 @@
+# prompt
+PROMPT="%F{yellow}%~%f %F{green}::%f "
+
+# history
+HISTSIZE=99999
+SAVEHIST=99999
+setopt INC_APPEND_HISTORY
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_REDUCE_BLANKS
+setopt HIST_IGNORE_SPACE
+
+# language
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+# editor
+export VISUAL=nvim
+export EDITOR=$VISUAL
+
+# vi mode (check if fzf history still works)
+# bindkey -v
+
+# bat
+export BAT_THEME=base16
+
+# aliases
+alias gd="git diff"
+alias gs="git status"
+alias dc="docker-compose"
+alias reload_history="fc -RI"
+
+# volta
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
+
+# pyenv
+if type pyenv > /dev/null; then
+  eval "$(pyenv init -)"
+fi
+
+# chruby
+if [[ -f /opt/homebrew/opt/chruby/share/chruby/chruby.sh ]]; then
+  source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
+  chruby ruby-3.0.3
+fi
+
+# remove slash from word characters
+WORDCHARS="${WORDCHARS/\//}"
+
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
