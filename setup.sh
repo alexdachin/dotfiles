@@ -27,12 +27,13 @@ fi
 if [[ $(ask_yes_no "👉 Install common brew packages?") = "yes" ]]; then
   echo "👉 Installing common brew packages ..."
   brew install bat dust exa fd ripgrep sd # rust ❤️
+  brew install fx
   brew install fzf
   brew install git git-delta # git with fancy diffs 🎩
   brew install jq # json diffs
   brew install kitty # 😼 terminal
   brew install neovim # editor
-  brew install pyenv chruby ruby-install # version managers
+  brew install pyenv chruby ruby-install tfenv # version managers
   brew install rustup
   brew install zsh
 fi
@@ -50,18 +51,28 @@ if [[ $(ask_yes_no "👉 Install and configure volta?") = "yes" ]]; then
   volta install yarn
 fi
 
-if [[ $(ask_yes_no "👉 Install language servers?") = "yes" ]]; then
-  echo "👉 Installing language servers ..."
-  volta install typescript typescript-language-server # tsserver
-  brew install hashicorp/tap/terraform-ls # terraformls
-fi
-
 if [[ $(ask_yes_no "👉 Configure pyenv?") = "yes" ]]; then
   echo "👉 Configuring pyenv ..."
   brew install openssl readline sqlite3 xz zlib # python build dependencies
   pyenv install 2.7.18
   pyenv install 3.10.0
   pyenv global 3.10.0 2.7.18
+fi
+
+if [[ $(ask_yes_no "👉 Configure tfenv?") = "yes" ]]; then
+  echo "👉 Configuring tfenv ..."
+  tfenv install latest
+  tfenv use
+fi
+
+if [[ $(ask_yes_no "👉 Install language servers?") = "yes" ]]; then
+  echo "👉 Installing language servers ..."
+  volta install vscode-json-languageserver # jsonls
+  brew install pyright # pyright
+  brew install rust-analyzer # rust_analyzer
+  brew install hashicorp/tap/terraform-ls # terraformls
+  volta install typescript typescript-language-server # tsserver
+  volta install vim-language-server # vimls
 fi
 
 if [[ $(ask_yes_no "👉 Install ruby?") = "yes" ]]; then

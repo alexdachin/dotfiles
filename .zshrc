@@ -2,8 +2,8 @@
 PROMPT="%F{yellow}%~%f %F{green}::%f "
 
 # history
-HISTSIZE=99999
-SAVEHIST=99999
+HISTSIZE=999999
+SAVEHIST=999999
 setopt INC_APPEND_HISTORY
 setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_REDUCE_BLANKS
@@ -48,4 +48,7 @@ fi
 WORDCHARS="${WORDCHARS/\//}"
 
 # fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
+
+# load extra config
+[[ -f $HOME/.zshrc_extra ]] && . "$HOME/.zshrc_extra"
