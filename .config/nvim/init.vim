@@ -53,3 +53,6 @@ EOF
 map <silent> <space>f :lua require'hop'.hint_char1()<cr>
 nmap <leader>ft :NvimTreeToggle<cr>
 nmap <leader>ff :NvimTreeFindFile<cr>
+nmap <leader>fs :Telescope find_files<cr>
+nmap <leader>fg :Telescope git_files<cr>
+nmap <leader>fb :Telescope buffers<cr>

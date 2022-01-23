@@ -65,6 +65,7 @@ require('packer').startup(function(use)
       end
     end
   }
+  use {'nvim-telescope/telescope.nvim', requires = {'nvim-lua/plenary.nvim'}}
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
