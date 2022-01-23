@@ -39,8 +39,8 @@ if type pyenv > /dev/null; then
 fi
 
 # chruby
-if [[ -f /opt/homebrew/opt/chruby/share/chruby/chruby.sh ]]; then
-  source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
+if [[ -f /usr/local/opt/chruby/share/chruby/chruby.sh ]]; then
+  source /usr/local/opt/chruby/share/chruby/chruby.sh
   chruby ruby-3.0.3
 fi
 
