@@ -65,6 +65,11 @@ if [[ $(ask_yes_no "👉 Configure tfenv?") = "yes" ]]; then
   tfenv use
 fi
 
+if [[ $(ask_yes_no "👉 Install ruby?") = "yes" ]]; then
+  echo "👉 Installing ruby ..."
+  ruby-install ruby 3.0.3
+fi
+
 if [[ $(ask_yes_no "👉 Install language servers?") = "yes" ]]; then
   echo "👉 Installing language servers ..."
   volta install vscode-json-languageserver # jsonls
@@ -73,11 +78,7 @@ if [[ $(ask_yes_no "👉 Install language servers?") = "yes" ]]; then
   brew install hashicorp/tap/terraform-ls # terraformls
   volta install typescript typescript-language-server # tsserver
   volta install vim-language-server # vimls
-fi
-
-if [[ $(ask_yes_no "👉 Install ruby?") = "yes" ]]; then
-  echo "👉 Installing ruby ..."
-  ruby-install ruby 3.0.3
+  gem install solargraph # solargraph
 fi
 
 if [[ $(ask_yes_no "👉 Install fonts?") = "yes" ]]; then
