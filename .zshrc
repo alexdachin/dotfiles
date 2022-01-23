@@ -50,5 +50,10 @@ WORDCHARS="${WORDCHARS/\//}"
 # fzf
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
+# aws-profile - fuzzy searches and sets aws profile based on credentials
+function aws-profile() {
+  export AWS_PROFILE="$(grep '\[.*\]' ~/.aws/credentials | tr -d '[-]' | fzf)"
+}
+
 # load extra config
 [[ -f $HOME/.zshrc_extra ]] && . "$HOME/.zshrc_extra"
