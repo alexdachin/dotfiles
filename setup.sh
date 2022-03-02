@@ -72,7 +72,7 @@ fi
 
 if [[ $(ask_yes_no "👉 Install language servers?") = "yes" ]]; then
   echo "👉 Installing language servers ..."
-  volta install vscode-json-languageserver # jsonls
+  volta install vscode-langservers-extracted
   brew install pyright # pyright
   brew install rust-analyzer # rust_analyzer
   brew install hashicorp/tap/terraform-ls # terraformls

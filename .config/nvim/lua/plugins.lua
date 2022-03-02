@@ -59,7 +59,7 @@ require('packer').startup(function(use)
         buf_set_keymap('n', '<space>lk', '<cmd>lua vim.diagnostic.goto_prev()<cr>', opts)
       end
 
-      local servers = { "jsonls", "pyright", "rust_analyzer", "solargraph", "terraformls", "tsserver", "vimls" }
+      local servers = { "eslint", "jsonls", "pyright", "rust_analyzer", "solargraph", "terraformls", "tsserver", "vimls" }
       for _, lsp in ipairs(servers) do
         nvim_lsp[lsp].setup { on_attach = on_attach, flags = { debounce_text_changes = 150 } }
       end
