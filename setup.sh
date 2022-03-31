@@ -34,6 +34,7 @@ if [[ $(ask_yes_no "👉 Install common brew packages?") = "yes" ]]; then
   brew install kitty # 😼 terminal
   brew install neovim # editor
   brew install pyenv chruby ruby-install tfenv # version managers
+  brew install romkatv/powerlevel10k/powerlevel10k # p10k
   brew install rustup
   brew install zsh
 fi
@@ -105,4 +106,6 @@ if [[ $(ask_yes_no "👉 Symlink config files?") = "yes" ]]; then
   # zsh
   ln -s ~/.dotfiles/.zprofile ~/.zprofile
   ln -s ~/.dotfiles/.zshrc ~/.zshrc
+  # p10k
+  ln -s ~/.dotfiles/.p10k.zsh ~/.p10k.zsh
 fi

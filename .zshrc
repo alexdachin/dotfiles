@@ -1,5 +1,7 @@
-# prompt
-PROMPT="%F{yellow}%~%f %F{green}::%f "
+# p10k instant prompt
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 # history
 HISTSIZE=999999
@@ -28,6 +30,13 @@ alias gd="git diff"
 alias gs="git status"
 alias dc="docker-compose"
 alias reload_history="fc -RI"
+
+# p10k
+if [[ -f /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme ]]; then
+  source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
+fi
+
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
 # volta
 export VOLTA_HOME="$HOME/.volta"
