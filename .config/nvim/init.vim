@@ -43,6 +43,9 @@ nmap <leader>bn :bn<cr>
 nmap <leader>bp :bp<cr>
 nmap <leader>b# :b #<cr>
 
+" Jenkinsfile syntax
+autocmd BufNewFile,BufRead Jenkinsfile set syntax=tf
+
 " Lua config
 lua << EOF
 require('terminal')
