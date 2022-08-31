@@ -67,7 +67,7 @@ fi
 
 if [[ $(ask_yes_no "👉 Install ruby?") = "yes" ]]; then
   echo "👉 Installing ruby ..."
-  ruby-install ruby 3.0.3
+  ruby-install ruby 3.1.2
 fi
 
 if [[ $(ask_yes_no "👉 Install language servers?") = "yes" ]]; then

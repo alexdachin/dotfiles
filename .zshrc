@@ -39,9 +39,9 @@ if type pyenv > /dev/null; then
 fi
 
 # chruby
-if [[ -f /usr/local/opt/chruby/share/chruby/chruby.sh ]]; then
-  source /usr/local/opt/chruby/share/chruby/chruby.sh
-  chruby ruby-3.0.3
+if [[ -f $(brew --prefix)/opt/chruby/share/chruby/chruby.sh ]]; then
+  source $(brew --prefix)/opt/chruby/share/chruby/chruby.sh
+  chruby ruby-3.1.2
 fi
 
 # remove slash from word characters
