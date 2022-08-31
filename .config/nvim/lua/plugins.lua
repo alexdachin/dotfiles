@@ -21,11 +21,34 @@ require('packer').startup(function(use)
     cmd = {'NvimTreeToggle', 'NvimTreeFindFile'},
     requires = {'kyazdani42/nvim-web-devicons'},
     config = function()
-      vim.g['nvim_tree_disable_window_picker'] = 1
       require'nvim-tree'.setup {
+        actions = {
+          open_file = {
+            window_picker = {
+              enable = true,
+            },
+          },
+        },
         git = {
-          enable = false
-        }
+          enable = false,
+        },
+        renderer = {
+          icons = {
+            show = {
+              file = true,
+              folder = true,
+              folder_arrow = false,
+              git = false,
+            },
+          },
+        },
+        view = {
+          mappings = {
+            list = {
+              { key = 'H', action = '' }, -- disable toggling hidden items
+            },
+          },
+        },
       }
     end
   }
@@ -59,7 +82,7 @@ require('packer').startup(function(use)
         buf_set_keymap('n', '<space>lk', '<cmd>lua vim.diagnostic.goto_prev()<cr>', opts)
       end
 
-      local servers = { "eslint", "jsonls", "pyright", "rust_analyzer", "solargraph", "terraformls", "tsserver", "vimls" }
+      local servers = { 'eslint', 'jsonls', 'pyright', 'rust_analyzer', 'solargraph', 'terraformls', 'tsserver', 'vimls' }
       for _, lsp in ipairs(servers) do
         nvim_lsp[lsp].setup { on_attach = on_attach, flags = { debounce_text_changes = 150 } }
       end
