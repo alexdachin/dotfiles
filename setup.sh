@@ -105,4 +105,6 @@ if [[ $(ask_yes_no "👉 Symlink config files?") = "yes" ]]; then
   # zsh
   ln -s ~/.dotfiles/.zprofile ~/.zprofile
   ln -s ~/.dotfiles/.zshrc ~/.zshrc
+  # ideavim
+  ln -s ~/.dotfiles/.ideavimrc ~/.ideavimrc
 fi

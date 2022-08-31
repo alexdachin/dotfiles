@@ -1,0 +1,28 @@
+set scrolloff=5     " number of lines for context
+set incsearch       " show search results as i type
+let mapleader = ',' " set leader to comma
+set ideajoin        " smart idea join
+set surround        " emulate vim-surround
+set NERDTree        " emulate NERDTree
+set hls             " highlight search
+
+" Clipboard
+vmap <space>y "+y
+nmap <space>yy "+yy
+nmap <space>p "+p
+nmap <space>P "+P
+
+" Actions
+map <leader>d <Action>(Debug)
+map <space>ld <Action>(GotoDeclaration)
+map <space>lt <Action>(GotoTypeDeclaration)
+map <space>lh <Action>(QuickJavaDoc)
+map \r <Action>(ReformatCode)
+map \b <Action>(ToggleLineBreakpoint)
+nmap ge <Action>(GotoNextError)
+nmap gE <Action>(GotoPreviousError)
+
+" NERDTree
+map <leader>ft :NERDTree<CR>
+map <leader>ff :NERDTreeFind<CR>
+map <leader>fc :NERDTreeClose<CR>
