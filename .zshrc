@@ -55,5 +55,8 @@ function aws-profile() {
   export AWS_PROFILE="$(grep '\[.*\]' ~/.aws/credentials | tr -d '[-]' | fzf)"
 }
 
+# dart pub
+export PATH="$HOME/.pub-cache/bin:$PATH"
+
 # load extra config
 [[ -f $HOME/.zshrc_extra ]] && . "$HOME/.zshrc_extra"
