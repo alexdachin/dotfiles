@@ -28,15 +28,17 @@ map <space>rs <Action>(Stop)
 
 " String manipulation key maps
 " emulate coercion in tpope/vim-abolish
-map crc <Action>(StringManipulation.ToCamelCase)
-map crk <Action>(StringManipulation.ToKebabCase)
-map crs <Action>(StringManipulation.ToSnakeCase)
+nmap crc <Action>(StringManipulation.ToCamelCase)
+nmap crk <Action>(StringManipulation.ToKebabCase)
+nmap crs <Action>(StringManipulation.ToSnakeCase)
 
 " Generic vim editor key maps
 nmap ge <Action>(GotoNextError)
 nmap gE <Action>(GotoPreviousError)
 nmap zc <Action>(CollapseRegion)
 nmap zo <Action>(ExpandRegion)
+nmap <C-o> <Action>(Back)
+nmap <C-i> <Action>(Forward)
 
 " Terminal key maps
 map <leader>tt <Action>(ActivateTerminalToolWindow)

@@ -2,6 +2,8 @@
   defaultBranch = master
 [pull]
   rebase = true
+[push]
+  default = current
 [diff]
   noprefix = true
 [alias]

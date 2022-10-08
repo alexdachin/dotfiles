@@ -16,41 +16,10 @@ require('packer').startup(function(use)
   }
   use {'kyazdani42/nvim-web-devicons'}
   use {
-    'kyazdani42/nvim-tree.lua',
-    opt = true,
-    cmd = {'NvimTreeToggle', 'NvimTreeFindFile'},
-    requires = {'kyazdani42/nvim-web-devicons'},
-    config = function()
-      require'nvim-tree'.setup {
-        actions = {
-          open_file = {
-            window_picker = {
-              enable = true,
-            },
-          },
-        },
-        git = {
-          enable = false,
-        },
-        renderer = {
-          icons = {
-            show = {
-              file = true,
-              folder = true,
-              folder_arrow = false,
-              git = false,
-            },
-          },
-        },
-        view = {
-          mappings = {
-            list = {
-              { key = 'H', action = '' }, -- disable toggling hidden items
-            },
-          },
-        },
-      }
-    end
+    'nvim-neo-tree/neo-tree.nvim',
+    branch = "v2.x",
+    requires = {'nvim-lua/plenary.nvim', 'kyazdani42/nvim-web-devicons', 'MunifTanjim/nui.nvim'},
+    setup = function() vim.g.neo_tree_remove_legacy_commands = true end
   }
   use {
     'lewis6991/gitsigns.nvim',

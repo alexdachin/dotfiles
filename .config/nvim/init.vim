@@ -54,8 +54,8 @@ EOF
 
 " Plugin key bindings
 map <silent> <space>f :lua require'hop'.hint_char1()<cr>
-nmap <leader>ft :NvimTreeToggle<cr>
-nmap <leader>ff :NvimTreeFindFile<cr>
+nmap <leader>ft :Neotree toggle<cr>
+nmap <leader>ff :Neotree reveal<cr>
 nmap <leader>fs :Telescope find_files<cr>
 nmap <leader>fg :Telescope git_files<cr>
 nmap <leader>bl :Telescope buffers<cr>
