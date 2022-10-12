@@ -7,6 +7,18 @@ require('packer').startup(function(use)
   use {'arcticicestudio/nord-vim'}
 
   use {
+    'hrsh7th/nvim-cmp',
+    requires = {
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-vsnip',
+      'hrsh7th/vim-vsnip',
+    },
+    config = function() require('plugin-config.nvim-cmp') end
+  }
+
+  use {
     'itchyny/lightline.vim',
     config = function()
       vim.opt.laststatus = 2
@@ -21,28 +33,7 @@ require('packer').startup(function(use)
     branch = 'v2.x',
     requires = {'nvim-lua/plenary.nvim', 'kyazdani42/nvim-web-devicons', 'MunifTanjim/nui.nvim'},
     setup = function() vim.g.neo_tree_remove_legacy_commands = true end,
-    config = function ()
-      require('neo-tree').setup({
-        enable_diagnostics = false,
-        enable_git_status = false,
-        window = {
-          mappings = {
-            ['<space>'] = 'noop',
-            ['H'] = 'noop',
-            ['/'] = 'noop',
-            ['z'] = 'noop',
-            ['o'] = 'open',
-          }
-        },
-        filesystem = {
-          filtered_items = {
-            visible = true,
-            hide_dotfiles = false,
-            hide_gitignored = false,
-          }
-        }
-      })
-    end
+    config = function() require('plugin-config.neo-tree') end
   }
 
   use {
@@ -60,28 +51,8 @@ require('packer').startup(function(use)
 
   use {
     'neovim/nvim-lspconfig',
-    config = function()
-      local nvim_lsp = require('lspconfig')
-      local on_attach = function(client, bufnr)
-        local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-        local opts = { noremap=true, silent=true }
-        buf_set_keymap('n', '<space>ld', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
-        buf_set_keymap('n', '<space>lh', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
-        buf_set_keymap('n', '<space>ls', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
-        buf_set_keymap('n', '<space>lt', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
-        buf_set_keymap('n', '<space>lca', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
-        buf_set_keymap('n', '<space>lrn', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-        buf_set_keymap('n', '<space>lre', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
-        buf_set_keymap('n', '<space>lf', '<cmd>lua vim.lsp.buf.formatting()<cr>', opts)
-        buf_set_keymap('n', '<space>lj', '<cmd>lua vim.diagnostic.goto_next()<cr>', opts)
-        buf_set_keymap('n', '<space>lk', '<cmd>lua vim.diagnostic.goto_prev()<cr>', opts)
-      end
-
-      local servers = { 'eslint', 'jsonls', 'pyright', 'rust_analyzer', 'solargraph', 'terraformls', 'tsserver', 'vimls' }
-      for _, lsp in ipairs(servers) do
-        nvim_lsp[lsp].setup { on_attach = on_attach, flags = { debounce_text_changes = 150 } }
-      end
-    end
+    after = 'cmp-nvim-lsp',
+    config = function() require('plugin-config.nvim-lspconfig') end
   }
 
   use {'nvim-telescope/telescope.nvim', requires = {'nvim-lua/plenary.nvim'}}
@@ -89,49 +60,12 @@ require('packer').startup(function(use)
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
-    config = function()
-      require'nvim-treesitter.configs'.setup {
-        ensure_installed = {
-          'bash',
-          'css',
-          'dockerfile',
-          'fish',
-          'go',
-          'graphql',
-          'hcl',
-          'html',
-          'http',
-          'java',
-          'javascript',
-          'json',
-          'kotlin',
-          'lua',
-          'make',
-          'php',
-          'python',
-          'prisma',
-          'ruby',
-          'rust',
-          'scala',
-          'scss',
-          'svelte',
-          'tsx',
-          'typescript',
-          'vim',
-          'vue',
-          'yaml',
-        },
-        sync_install = false,
-        highlight = { enable = true },
-      }
-    end
+    config = function() require('plugin-config.nvim-treesitter') end
   }
 
   use {
     'phaazon/hop.nvim',
-    config = function()
-      require'hop'.setup()
-    end
+    config = function() require'hop'.setup() end
   }
 
   use {'tpope/vim-abolish'}

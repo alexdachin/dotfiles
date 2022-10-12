@@ -98,8 +98,7 @@ if [[ $(ask_yes_no "👉 Symlink config files?") = "yes" ]]; then
   # nvim
   mkdir -p ~/.config/nvim/lua
   ln -s ~/.dotfiles/.config/nvim/init.vim ~/.config/nvim/init.vim
-  ln -s ~/.dotfiles/.config/nvim/lua/plugins.lua ~/.config/nvim/lua/plugins.lua
-  ln -s ~/.dotfiles/.config/nvim/lua/terminal.lua ~/.config/nvim/lua/terminal.lua
+  ln -s ~/.dotfiles/.config/nvim/lua/ ~/.config/nvim/lua
   # git
   ln -s ~/.dotfiles/.gitconfig ~/.gitconfig
   # zsh
