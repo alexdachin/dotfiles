@@ -25,7 +25,7 @@ set shiftwidth=2
 
 " Colorscheme
 set background=dark
-colorscheme nord
+colorscheme tokyonight-storm
 
 " Clipboard
 vmap <space>y "+y

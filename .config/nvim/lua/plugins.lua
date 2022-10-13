@@ -4,7 +4,18 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 end
 
 require('packer').startup(function(use)
-  use {'arcticicestudio/nord-vim'}
+  use {
+    'folke/tokyonight.nvim',
+    config = function()
+      require('tokyonight').setup({
+        style = 'storm',
+        styles = {
+          comments = { italic = false },
+          keywords = { italic = false },
+        },
+      })
+    end
+  }
 
   use {
     'hrsh7th/nvim-cmp',
@@ -18,15 +29,13 @@ require('packer').startup(function(use)
     config = function() require('plugin-config.nvim-cmp') end
   }
 
-  use {
-    'itchyny/lightline.vim',
-    config = function()
-      vim.opt.laststatus = 2
-      vim.g['lightline'] = { colorscheme = 'nord' }
-    end
-  }
-
   use {'kyazdani42/nvim-web-devicons'}
+
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = {'kyazdani42/nvim-web-devicons'},
+    config = function() require('plugin-config.lualine') end,
+  }
 
   use {
     'nvim-neo-tree/neo-tree.nvim',
