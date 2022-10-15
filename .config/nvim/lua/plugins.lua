@@ -9,10 +9,6 @@ require('packer').startup(function(use)
     config = function()
       require('tokyonight').setup({
         style = 'storm',
-        styles = {
-          comments = { italic = false },
-          keywords = { italic = false },
-        },
       })
     end
   }
