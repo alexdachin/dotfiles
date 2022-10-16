@@ -60,7 +60,11 @@ require('packer').startup(function(use)
     config = function() require('plugin-config.nvim-lspconfig') end
   }
 
-  use {'nvim-telescope/telescope.nvim', requires = {'nvim-lua/plenary.nvim'}}
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = {'nvim-lua/plenary.nvim'},
+    tag = '0.1.0',
+  }
 
   use {
     'nvim-treesitter/nvim-treesitter',

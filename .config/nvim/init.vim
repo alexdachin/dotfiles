@@ -59,3 +59,5 @@ nmap <leader>ff :Neotree reveal<cr>
 nmap <leader>fs :Telescope find_files<cr>
 nmap <leader>fg :Telescope git_files<cr>
 nmap <leader>bl :Telescope buffers<cr>
+nmap <leader>rg :Telescope live_grep<cr>
+nmap <leader>tr :Telescope treesitter<cr>
