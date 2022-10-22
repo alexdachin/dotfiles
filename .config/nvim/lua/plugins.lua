@@ -5,15 +5,6 @@ end
 
 require('packer').startup(function(use)
   use {
-    'folke/tokyonight.nvim',
-    config = function()
-      require('tokyonight').setup({
-        style = 'storm',
-      })
-    end
-  }
-
-  use {
     'hrsh7th/nvim-cmp',
     requires = {
       'hrsh7th/cmp-buffer',
@@ -75,6 +66,11 @@ require('packer').startup(function(use)
   use {
     'phaazon/hop.nvim',
     config = function() require'hop'.setup() end
+  }
+
+  use {
+    'rmehri01/onenord.nvim',
+    config = function() require'onenord'.setup() end
   }
 
   use {'tpope/vim-abolish'}
