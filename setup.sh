@@ -87,7 +87,16 @@ fi
 
 if [[ $(ask_yes_no "👉 Install ruby?") = "yes" ]]; then
   echo "👉 Installing ruby ..."
-  ruby-install ruby 3.1.2
+  ruby-install ruby 3.1.2 -- --enable-shared
+fi
+
+if [[ $(ask_yes_no "👉 Install sdkman?") = "yes" ]]; then
+  echo "👉 Installing sdkman ..."
+  curl -s "https://get.sdkman.io" | bash
+  source "$HOME/.sdkman/bin/sdkman-init.sh"
+  sdk install java 17.0.4-amzn
+  sdk default java 17.0.4-amzn
+  sdk install maven
 fi
 
 if [[ $(ask_yes_no "👉 Install language servers?") = "yes" ]]; then
