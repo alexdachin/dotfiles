@@ -1,8 +1,8 @@
-#!/bin/sh
+#!/bin/zsh
 
 function ask_yes_no() {
-    read -p "$1 [y/N]: " response
-    case $(echo "$response" | tr '[:upper:]' '[:lower:]') in
+    read "RESPONSE?$1 [y/N]: "
+    case $(echo "$RESPONSE" | tr '[:upper:]' '[:lower:]') in
         y|yes) echo "yes" ;;
         *)     echo "no" ;;
     esac
