@@ -24,6 +24,26 @@ if [[ $(ask_yes_no "👉 Install brew 🍺?") = "yes" ]]; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
+if [[ $(ask_yes_no "👉 Symlink config files?") = "yes" ]]; then
+  echo "👉 Symlinking config files ..."
+  # kitty
+  mkdir -p ~/.config/kitty
+  ln -s ~/.dotfiles/.config/kitty/kitty.conf ~/.config/kitty/kitty.conf
+  # nvim
+  mkdir -p ~/.config/nvim/lua
+  ln -s ~/.dotfiles/.config/nvim/init.vim ~/.config/nvim/init.vim
+  ln -s ~/.dotfiles/.config/nvim/lua ~/.config/nvim/lua
+  # git
+  ln -s ~/.dotfiles/.gitconfig ~/.gitconfig
+  # zsh
+  ln -s ~/.dotfiles/.zprofile ~/.zprofile
+  ln -s ~/.dotfiles/.zshrc ~/.zshrc
+  source ~/.zprofile
+  source ~/.zshrc
+  # ideavim
+  ln -s ~/.dotfiles/.ideavimrc ~/.ideavimrc
+fi
+
 if [[ $(ask_yes_no "👉 Install common brew packages?") = "yes" ]]; then
   echo "👉 Installing common brew packages ..."
   brew install bat dust exa fd ripgrep sd # rust ❤️
@@ -88,22 +108,4 @@ if [[ $(ask_yes_no "👉 Install fonts?") = "yes" ]]; then
   brew install --cask font-iosevka
   # symbols nerd font
   curl "https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/src/glyphs/Symbols-2048-em%20Nerd%20Font%20Complete.ttf" -o ~/Library/Fonts/symbols-2048-em-nerd-font.ttf
-fi
-
-if [[ $(ask_yes_no "👉 Symlink config files?") = "yes" ]]; then
-  echo "👉 Symlinking config files ..."
-  # kitty
-  mkdir -p ~/.config/kitty
-  ln -s ~/.dotfiles/.config/kitty/kitty.conf ~/.config/kitty/kitty.conf
-  # nvim
-  mkdir -p ~/.config/nvim/lua
-  ln -s ~/.dotfiles/.config/nvim/init.vim ~/.config/nvim/init.vim
-  ln -s ~/.dotfiles/.config/nvim/lua/ ~/.config/nvim/lua
-  # git
-  ln -s ~/.dotfiles/.gitconfig ~/.gitconfig
-  # zsh
-  ln -s ~/.dotfiles/.zprofile ~/.zprofile
-  ln -s ~/.dotfiles/.zshrc ~/.zshrc
-  # ideavim
-  ln -s ~/.dotfiles/.ideavimrc ~/.ideavimrc
 fi
