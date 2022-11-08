@@ -116,5 +116,5 @@ if [[ $(ask_yes_no "👉 Install fonts?") = "yes" ]]; then
   brew tap homebrew/cask-fonts
   brew install --cask font-iosevka
   # symbols nerd font
-  curl "https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/src/glyphs/Symbols-2048-em%20Nerd%20Font%20Complete.ttf" -o ~/Library/Fonts/symbols-2048-em-nerd-font.ttf
+  curl "https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/NerdFontsSymbolsOnly/complete/Symbols-2048-em%20Nerd%20Font%20Complete.ttf" -o ~/Library/Fonts/symbols-2048-em-nerd-font.ttf
 fi
