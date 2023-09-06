@@ -5,6 +5,7 @@ set ideajoin        " smart join
 set surround        " emulate vim-surround
 set NERDTree        " emulate NERDTree
 set hls             " highlight search
+set matchit         " emulate matchit
 
 " Clipboard
 vmap <space>y "+y
@@ -13,8 +14,6 @@ nmap <space>p "+p
 nmap <space>P "+P
 
 " Language-centric key maps
-map <space>ld <Action>(GotoDeclaration)
-map <space>lh <Action>(QuickJavaDoc)
 map <space>li <Action>(ShowIntentionActions)
 map <space>lr <Action>(RenameElement)
 map <space>lt <Action>(GotoTypeDeclaration)
@@ -55,5 +54,6 @@ nmap <leader>fc :NERDTreeClose<CR>
 nmap <leader>fs <Action>(GotoFile)
 
 " Other
-map \s <Action>(Switcher)
-map \r <Action>(ReformatCode)
+nmap <leader>rg <Action>(FindInPath)
+nmap \r <Action>(ReformatCode)
+nmap \i <Action>(OptimizeImports)
