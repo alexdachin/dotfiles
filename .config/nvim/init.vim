@@ -23,10 +23,6 @@ set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 
-" Colorscheme
-set background=dark
-colorscheme onenord
-
 " Clipboard
 vmap <space>y "+y
 nmap <space>yy "+yy

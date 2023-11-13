@@ -1,87 +1,99 @@
-local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  packer_bootstrap = vim.fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
+vim.opt.rtp:prepend(lazypath)
 
-require('packer').startup(function(use)
-  use {
-    'hrsh7th/nvim-cmp',
-    requires = {
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-vsnip',
-      'hrsh7th/vim-vsnip',
+-- Plugins
+require("lazy").setup({
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-vsnip",
+      "hrsh7th/vim-vsnip",
     },
-    config = function() require('plugin-config.nvim-cmp') end
-  }
+    config = function() require("plugin-config.nvim-cmp") end
+  },
 
-  use {'kyazdani42/nvim-web-devicons'}
+  "kyazdani42/nvim-web-devicons",
 
-  use {
-    'nvim-lualine/lualine.nvim',
-    requires = {'kyazdani42/nvim-web-devicons'},
-    config = function() require('plugin-config.lualine') end,
-  }
+  {
+    "nvim-lualine/lualine.nvim",
+    dependencies = {"kyazdani42/nvim-web-devicons"},
+    config = function() require("plugin-config.lualine") end,
+  },
 
-  use {
-    'nvim-neo-tree/neo-tree.nvim',
-    branch = 'v2.x',
-    requires = {'nvim-lua/plenary.nvim', 'kyazdani42/nvim-web-devicons', 'MunifTanjim/nui.nvim'},
-    setup = function() vim.g.neo_tree_remove_legacy_commands = true end,
-    config = function() require('plugin-config.neo-tree') end
-  }
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v2.x",
+    dependencies = {"nvim-lua/plenary.nvim", "kyazdani42/nvim-web-devicons", "MunifTanjim/nui.nvim"},
+    init = function() vim.g.neo_tree_remove_legacy_commands = true end,
+    config = function() require("plugin-config.neo-tree") end
+  },
 
-  use {
-    'lewis6991/gitsigns.nvim',
-    requires = {'nvim-lua/plenary.nvim'},
+  "github/copilot.vim",
+
+  {
+    "lewis6991/gitsigns.nvim",
+    dependencies = {"nvim-lua/plenary.nvim"},
     config = function()
-      require('gitsigns').setup {
+      require("gitsigns").setup {
         signcolumn = true,
         numhl      = true,
       }
     end
-  }
+  },
 
-  use {'mattn/emmet-vim'}
+  "mattn/emmet-vim",
 
-  use {
-    'neovim/nvim-lspconfig',
-    after = 'cmp-nvim-lsp',
-    config = function() require('plugin-config.nvim-lspconfig') end
-  }
+  {
+    "neovim/nvim-lspconfig",
+    dependencies = {"hrsh7th/cmp-nvim-lsp"},
+    config = function() require("plugin-config.nvim-lspconfig") end
+  },
 
-  use {
-    'nvim-telescope/telescope.nvim',
-    requires = {'nvim-lua/plenary.nvim'},
-    tag = '0.1.0',
-  }
+  {
+    "nvim-telescope/telescope.nvim",
+    dependencies = {"nvim-lua/plenary.nvim"},
+    tag = "0.1.4",
+  },
 
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate',
-    config = function() require('plugin-config.nvim-treesitter') end
-  }
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    config = function() require("plugin-config.nvim-treesitter") end
+  },
 
-  use {
-    'phaazon/hop.nvim',
-    config = function() require'hop'.setup() end
-  }
+  {
+    "phaazon/hop.nvim",
+    config = function() require"hop".setup() end
+  },
 
-  use {
-    'rmehri01/onenord.nvim',
-    config = function() require'onenord'.setup() end
-  }
+  {
+    "rmehri01/onenord.nvim",
+    lazy = false, -- load during startup
+    priority = 1000, -- load this before all the other start plugins
+    config = function()
+      require"onenord".setup({
+        theme = "dark"
+      })
+    end
+  },
 
-  use {'tpope/vim-abolish'}
+  "tpope/vim-abolish",
 
-  use {'tpope/vim-fugitive'}
+  "tpope/vim-fugitive",
 
-  use {'tpope/vim-surround'}
-
-  use {'wbthomason/packer.nvim'}
-
-  if packer_bootstrap then
-    require('packer').sync()
-  end
-end)
+  "tpope/vim-surround",
+})
