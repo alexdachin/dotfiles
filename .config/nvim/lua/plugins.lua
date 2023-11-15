@@ -81,14 +81,17 @@ require("lazy").setup({
   },
 
   {
-    "rmehri01/onenord.nvim",
+    "folke/tokyonight.nvim",
     lazy = false, -- load during startup
     priority = 1000, -- load this before all the other start plugins
     config = function()
-      require"onenord".setup({
-        theme = "dark"
+      require("tokyonight").setup({
+        style = "moon",
+        lualine_bold = true,
       })
-    end
+
+      vim.cmd([[colorscheme tokyonight]])
+    end,
   },
 
   "tpope/vim-abolish",
