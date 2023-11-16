@@ -81,16 +81,16 @@ require("lazy").setup({
   },
 
   {
-    "folke/tokyonight.nvim",
+    "catppuccin/nvim",
+    name = "catppuccin",
     lazy = false, -- load during startup
     priority = 1000, -- load this before all the other start plugins
     config = function()
-      require("tokyonight").setup({
-        style = "moon",
-        lualine_bold = true,
+      require("catppuccin").setup({
+        flavour = "macchiato",
       })
 
-      vim.cmd([[colorscheme tokyonight]])
+      vim.cmd([[colorscheme catppuccin]])
     end,
   },
 
