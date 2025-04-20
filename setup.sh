@@ -17,6 +17,7 @@ if [[ $(ask_yes_no "👉 Set up macOS settings?") = "yes" ]]; then
   echo "👉 Setting up macOS settings ..."
   defaults write -g ApplePressAndHoldEnabled -bool false
   defaults write com.apple.screencapture "disable-shadow" -bool true
+  defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 fi
 
 if [[ $(ask_yes_no "👉 Install brew 🍺?") = "yes" ]]; then
@@ -116,5 +117,6 @@ if [[ $(ask_yes_no "👉 Install fonts?") = "yes" ]]; then
   brew tap homebrew/cask-fonts
   brew install --cask font-iosevka
   # symbols nerd font
-  curl "https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/NerdFontsSymbolsOnly/complete/Symbols-2048-em%20Nerd%20Font%20Complete.ttf" -o ~/Library/Fonts/symbols-2048-em-nerd-font.ttf
+  curl "https://raw.githubusercontent.com/ryanoasis/nerd-fonts/refs/heads/master/patched-fonts/NerdFontsSymbolsOnly/SymbolsNerdFont-Regular.ttf" -o ~/Library/Fonts/symbols-nerd-font-regular.ttf
+  curl "https://raw.githubusercontent.com/ryanoasis/nerd-fonts/refs/heads/master/patched-fonts/NerdFontsSymbolsOnly/SymbolsNerdFontMono-Regular.ttf" -o ~/Library/Fonts/symbols-nerd-font-mono-regular.ttf
 fi

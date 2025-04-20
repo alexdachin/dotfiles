@@ -55,5 +55,6 @@ nmap <leader>fs <Action>(GotoFile)
 
 " Other
 nmap <leader>rg <Action>(FindInPath)
+nmap \e <Action>(Javascript.Linters.EsLint.Fix)
 nmap \r <Action>(ReformatCode)
 nmap \i <Action>(OptimizeImports)
