@@ -76,10 +76,31 @@ return {
     branch = "master",
     dependencies = "nvim-lua/plenary.nvim",
     keys = {
-      { "<leader>fs", "<cmd>Telescope find_files<cr>", desc = "Files" },
+      {
+        "<leader>fs",
+        function() require("telescope.builtin").find_files({
+          hidden = true,
+          file_ignore_patterns = { "^.git/", "^node_modules/" },
+        }) end,
+        desc = "Find Files",
+      },
       { "<leader>fg", "<cmd>Telescope git_files<cr>", desc = "Git Files" },
       { "<leader>bl", "<cmd>Telescope buffers<cr>",  desc = "Buffers" },
-      { "<leader>rg", "<cmd>Telescope live_grep<cr>", desc = "Grep" },
+      {
+        "<leader>rg",
+        function()
+          require("telescope.builtin").live_grep({
+            additional_args = function()
+              return {
+                "--hidden",
+                "-g", "!.git/",
+                "-g", "!node_modules/",
+              }
+            end,
+          })
+        end,
+        desc = "Grep",
+      },
       { "<leader>tr", "<cmd>Telescope treesitter<cr>", desc = "Treesitter" },
     },
   },
