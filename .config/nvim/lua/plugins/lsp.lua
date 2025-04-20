@@ -5,19 +5,11 @@ return {
     opts = {},
   },
   {
-    "echasnovski/mini.completion",
-    event = "InsertEnter",
-    config = function()
-      require("mini.completion").setup({
-        lsp_completion = { source_func = "omnifunc", auto_setup = true },
-      })
-    end,
-  },
-  {
     "neovim/nvim-lspconfig",
     dependencies = {
       { "williamboman/mason.nvim", config = true },
       { "williamboman/mason-lspconfig.nvim" },
+      { "hrsh7th/cmp-nvim-lsp" },
     },
     config = function()
       require("mason-lspconfig").setup({
@@ -37,9 +29,12 @@ return {
         },
       })
 
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
       require("mason-lspconfig").setup_handlers({
         function(server)
           require("lspconfig")[server].setup({
+            capabilities = capabilities,
             on_attach = function(_, bufnr)
               local nmap = function(keys, func, desc)
                 vim.keymap.set("n", keys, func, { buffer = bufnr, desc = "LSP: " .. desc })
@@ -59,5 +54,25 @@ return {
         end,
       })
     end,
-  }
+  },
+  {
+    "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp",
+    },
+    config = function()
+      local cmp = require("cmp")
+      cmp.setup({
+        mapping = {
+          ["<C-n>"] = cmp.mapping.select_next_item(),
+          ["<C-p>"] = cmp.mapping.select_prev_item(),
+          ["<CR>"]  = cmp.mapping.confirm({ select = true }),
+        },
+        sources = {
+          { name = "nvim_lsp" },
+        },
+      })
+    end,
+  },
 }

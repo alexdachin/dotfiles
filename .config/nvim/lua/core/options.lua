@@ -7,7 +7,6 @@ vim.opt.incsearch = true
 vim.opt.list = true
 vim.opt.undofile = true
 vim.opt.termguicolors = true
-vim.opt.completeopt = { "menu", "menuone", "noselect", "fuzzy" }
 vim.g.mapleader = ","
 
 -- No swap files
