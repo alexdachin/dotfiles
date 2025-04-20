@@ -23,7 +23,15 @@ return {
   {
     "folke/noice.nvim",
     event = "VeryLazy",
-    opts = {},
+    opts = {
+      routes = {
+        {
+          -- filter out "/search-term [x/y]" inline messages
+          filter = { event = "msg_show", kind = "search_count" },
+          opts = { skip = true },
+        },
+      },
+    },
     dependencies = {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify",
