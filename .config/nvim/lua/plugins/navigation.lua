@@ -22,6 +22,11 @@ return {
     opts = {
       git = { enable = true },
       actions = { open_file = { window_picker = { enable = false } } },
+      filters = {
+        custom = { "^\\.git$" },
+        dotfiles = false,
+        git_ignored = false,
+      },
       on_attach = function(bufnr)
         local api = require("nvim-tree.api")
         local opts = function(desc)
