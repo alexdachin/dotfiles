@@ -7,8 +7,8 @@ return {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
-      { "williamboman/mason.nvim", config = true },
-      { "williamboman/mason-lspconfig.nvim" },
+      { "mason-org/mason.nvim", config = true, version = "^1.0.0" },
+      { "mason-org/mason-lspconfig.nvim", version = "^1.0.0" },
       { "hrsh7th/cmp-nvim-lsp" },
     },
     config = function()
