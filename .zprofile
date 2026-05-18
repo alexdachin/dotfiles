@@ -7,3 +7,6 @@ fi
 if type pyenv > /dev/null; then
   eval "$(pyenv init --path)"
 fi
+
+# load extra config
+[[ -f $HOME/.zprofile_extra ]] && . "$HOME/.zprofile_extra"
