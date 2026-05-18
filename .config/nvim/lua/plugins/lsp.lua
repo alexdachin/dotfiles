@@ -50,32 +50,10 @@ return {
     end,
   },
   {
-    "hrsh7th/cmp-nvim-lsp",
-    lazy = false,
-    config = function()
-      vim.lsp.config('*', {
-        capabilities = require('cmp_nvim_lsp').default_capabilities(),
-      })
-    end,
-  },
-  {
-    "hrsh7th/nvim-cmp",
-    event = "InsertEnter",
-    dependencies = {
-      "hrsh7th/cmp-nvim-lsp",
+    "saghen/blink.cmp",
+    version = "1.*",
+    opts = {
+      keymap = { preset = "enter" },
     },
-    config = function()
-      local cmp = require("cmp")
-      cmp.setup({
-        mapping = {
-          ["<C-n>"] = cmp.mapping.select_next_item(),
-          ["<C-p>"] = cmp.mapping.select_prev_item(),
-          ["<CR>"]  = cmp.mapping.confirm({ select = true }),
-        },
-        sources = {
-          { name = "nvim_lsp" },
-        },
-      })
-    end,
   },
 }
