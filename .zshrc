@@ -17,8 +17,8 @@ export LC_ALL=en_US.UTF-8
 export VISUAL=nvim
 export EDITOR=$VISUAL
 
-# vi mode (check if fzf history still works)
-# bindkey -v
+# emacs keybindings
+bindkey -e
 
 # bat
 export BAT_THEME=base16

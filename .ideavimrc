@@ -20,7 +20,7 @@ map <space>lt <Action>(GotoTypeDeclaration)
 map <space>lu <Action>(FindUsages)
 
 " Run key maps
-map <space>rr <Action>(Run)
+map <space>rr <Action>(RunClass)
 map <space>rb <Action>(ToggleLineBreakpoint)
 map <space>rd <Action>(Debug)
 map <space>rs <Action>(Stop)
