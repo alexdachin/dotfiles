@@ -12,6 +12,7 @@ return {
         "javascript",
         "json",
         "lua",
+        "regex",
         "rust",
         "tsx",
         "typescript",
